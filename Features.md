@@ -142,3 +142,4 @@ L'application est compatible :
 * Tableau de bord avancé
 * Graphiques interactifs
 * Recherche avancée
+* Création de l'application mobile CRM-Commercial
