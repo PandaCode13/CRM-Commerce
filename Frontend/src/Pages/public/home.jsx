@@ -1,13 +1,11 @@
-// Import extension 
-import {React, useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 
 // import components && tools
-import Navbar from "../../components/Navbar";
-import CRM from "../../features/Data/DataHomeVisited/CRM";
-import Temoins from "../../features/Data/DataHomeVisited/Temoignages"; 
+import Navbar from "../../Components/Navbar";
+import { CardContainerExplication } from "../../features/Data/DataHomeVisited";
 
 // import css && css tools
-import "./css/dashboard.css";
+import "./css/home.css";
 
 const Home = () => {
     return (
@@ -16,18 +14,27 @@ const Home = () => {
 
             <div className="hero-section">
                 <h2 className="title">Bienvenue dans le commerce CRM</h2>
-                <p className="subtitle">Découvrez et Achetez un CRM correspondant à vos besoins.</p>
+                <p className="subtitle">Découvrez et achetez un CRM correspondant à vos besoins.</p>
                 <div className="button">
                     <a href="#crm-section" className="btn">Découvrir les CRM</a>
-                    <a href="register.jsx" className="btn btn-secondary">S'inscrire</a>
+                    <Link to="/register" className="btn btn-secondary">S'inscrire</Link>
                 </div>
             </div>
 
             <div className="explication-section">
                 <h3 className="title">Pourquoi ce commerce CRM ?</h3>
-                <div className="card-container"></div>
+                <div className="card-container">
+                    {CardContainerExplication.map((card) => (
+                        <div key={card.id} className="card">
+                            <img src={card.image} alt={card.title} className="card-image" />
+                            <h4 className="card-title">{card.title}</h4>
+                            <p className="card-description">{card.description}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
+
 export default Home;
