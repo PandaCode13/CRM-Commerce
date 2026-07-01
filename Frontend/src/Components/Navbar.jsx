@@ -36,7 +36,7 @@ export default function Navbar() {
             onClick={closeMenu}
             className="text-lg sm:text-xl font-bold tracking-wide text-[#0F4C5C]"
           >
-            Digital Library
+            Commerce CRM
           </Link>
         </div>
 
@@ -72,8 +72,8 @@ export default function Navbar() {
                 Accueil
               </Link>
 
-              <Link to="/catalog" onClick={closeMenu} className="nav-link">
-                Catalogue
+              <Link to="/features" onClick={closeMenu} className="nav-link">
+                Fonctionnalités
               </Link>
 
               <Link to="/login" onClick={closeMenu} className="nav-link">

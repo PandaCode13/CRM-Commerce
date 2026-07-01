@@ -1,4 +1,4 @@
-export const explication = [
+export const CardContainerExplication = [
     {
         id: 1,
         title: "Qu'est-ce que ce commerce CRM ?",
