@@ -32,8 +32,8 @@ export const CRM = [
         name: "CRM1",
         description: "Description du CRM1",
         image: "https://via.placeholder.com/150",
-        link: "https://www.crm1.com",
-    },
+        link_url_frontend: "https://github.com/PandaCode13/PORTFOLIO-MOHAMED-ABDO-Said/blob/main/index.html"
+    }
 ];
 
 export const Temoignages = [
@@ -42,6 +42,6 @@ export const Temoignages = [
         name: "Temoignage1",
         description: "Description du temoignage1",
         image: "https://via.placeholder.com/150",
-        link: "https://www.temoignage1.com",
-    },
+        link: "https://www.temoignage1.com"
+    }
 ];

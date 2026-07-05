@@ -10,7 +10,6 @@ import "./css/home.css";
 const Home = () => {
     return (
         <div className="dashboard-container">
-            <Navbar />
 
             <div className="hero-section">
                 <h2 className="title">Bienvenue dans le commerce CRM</h2>

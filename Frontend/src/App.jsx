@@ -31,7 +31,6 @@ export default function App() {
         {/* PUBLIC */}
         <Route path="/home" element={<Home />} />
         <Route path="/features" element={<Features />} />
-        <Route path="/catalog" element={<Navigate to="/features" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
