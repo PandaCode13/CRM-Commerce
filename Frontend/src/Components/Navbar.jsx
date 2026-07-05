@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { logo } from "../assets/logo.png";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -20,15 +21,16 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-[#FAFAF9] border-b border-[#DDE5E4] sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+    <nav className="">
+      <div className="">
 
         {/* LOGO */}
         <div className="flex items-center gap-2">
           <img
-            src="/favicon.png"
+            src={logo}
             alt="Library Digital logo"
-            className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+            width={50 }
+            height={50}
           />
 
           <Link
