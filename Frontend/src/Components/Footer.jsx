@@ -15,11 +15,13 @@ export default function Footer() {
           <Link to="/home">Accueil</Link>
           <Link to="/features">Fonctionnalités</Link>
           <Link to="/register">Créer un compte</Link>
+          <Link to="/mentions-legales">Mentions légales</Link>
+          <Link to="/politique-confidentialite">Confidentialité</Link>
         </nav>
 
         <div className="site-footer__contact">
           <h3>Besoin d'aide ?</h3>
-          <a href="mailto:contact@crm-commerce.com">contact@crm-commerce.com</a>
+          <a href="mailto:saidmedabdo13@gmail.com">saidmedabdo13@gmail.com</a>
           <Link to="/login" className="site-footer__cta">Se connecter <i className="fa-solid fa-arrow-right" aria-hidden="true" /></Link>
         </div>
       </div>
