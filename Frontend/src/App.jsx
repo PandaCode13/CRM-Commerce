@@ -1,5 +1,7 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "./Components/Navbar";
+import MentionsLegales from "./Components/MentionsLegales";
+import PolitiqueConfidentialite from "./Components/PolitiqueConfidentialite";
 
 // PUBLIC
 import Home from "./Pages/public/Home";
@@ -33,6 +35,8 @@ export default function App() {
         <Route path="/features" element={<Features />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/mentions-legales" element={<MentionsLegales />} />
+        <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
 
         {/* USER */}
         <Route path="/dashboard/user" element={
