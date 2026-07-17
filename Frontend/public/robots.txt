@@ -1,0 +1,10 @@
+# robots.txt pour CRM Commerce
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://crm-commerce.com/sitemap.xml
+
+# Dossiers privés
+Disallow: /dashboard/
+Disallow: /api/

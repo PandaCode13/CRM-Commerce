@@ -1,3 +1,5 @@
+import "./css/dashboard.css";
+
 const AdminDashboard = () => {
     return (
         <main className="dashboard-container">

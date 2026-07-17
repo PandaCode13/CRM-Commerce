@@ -16,6 +16,10 @@ Le projet est conçu avec une architecture Frontend/Backend séparée afin de fa
 
 ---
 
+## Explication plus claire 
+
+Le projet CRM Commerce est un projet conçu qui répond à cette problématique 
+
 ## Architecture
 
 ```text

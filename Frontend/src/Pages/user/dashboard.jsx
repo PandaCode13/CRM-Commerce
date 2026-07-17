@@ -1,3 +1,5 @@
+import "./css/dashboard.css";
+
 const UserDashboard = () => {
     return (
         <main className="dashboard-container">

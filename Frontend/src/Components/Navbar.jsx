@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { logo } from "../assets/logo.png";
+import { useState, useEffect, useRef } from "react";
+import logo from "../assets/logo.png";
+import "./navbar.css";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -9,10 +10,26 @@ export default function Navbar() {
   const role = localStorage.getItem("role");
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [hideNav, setHideNav] = useState(false);
+  const prevScrollY = useRef(0);
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 50);
+      if (currentY > prevScrollY.current && currentY > 100) {
+        setHideNav(true);
+      } else {
+        setHideNav(false);
+      }
+      prevScrollY.current = currentY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const closeMenu = () => setMenuOpen(false);
 
   const logout = () => {
     localStorage.clear();
@@ -20,133 +37,99 @@ export default function Navbar() {
     navigate("/home");
   };
 
-  return (
-    <nav className="">
-      <div className="">
+  const navClass = [
+    "navbar",
+    scrolled ? "navbar--scrolled" : "",
+    hideNav ? "navbar--hidden" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
-        {/* LOGO */}
-        <div className="flex items-center gap-2">
+  return (
+    <nav className={navClass}>
+      <div className="navbar__inner">
+        <div className="navbar__logo">
           <img
             src={logo}
-            alt="Library Digital logo"
-            width={50 }
+            alt="CRM Commerce logo"
+            className="navbar__logo-img"
+            width={50}
             height={50}
           />
-
-          <Link
-            to="/"
-            onClick={closeMenu}
-            className="text-lg sm:text-xl font-bold tracking-wide text-[#0F4C5C]"
-          >
+          <Link to="/" onClick={closeMenu} className="navbar__brand">
             Commerce CRM
           </Link>
         </div>
 
-        {/* BOUTON MOBILE */}
         <button
-          className="md:hidden text-[#0F4C5C] text-2xl"
+          className="navbar__toggle"
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
         >
-          ☰
+          <span className={`navbar__toggle-icon ${menuOpen ? "navbar__toggle-icon--open" : ""}`}>
+            ☰
+          </span>
         </button>
 
-        {/* MENU */}
-        <div
-          className={`
-            absolute md:static
-            top-full left-0
-            w-full md:w-auto
-            bg-[#FAFAF9] md:bg-transparent
-            border-b md:border-0 border-[#DDE5E4]
-            flex flex-col md:flex-row
-            items-start md:items-center
-            gap-4 md:gap-6
-            text-sm font-medium
-            px-6 md:px-0 py-4 md:py-0
-            ${menuOpen ? "flex" : "hidden md:flex"}
-          `}
-        >
-
-          {/* PUBLIC */}
+        <div className={`navbar__menu ${menuOpen ? "navbar__menu--open" : ""}`}>
           {!token && (
             <>
               <Link to="/home" onClick={closeMenu} className="nav-link">
                 Accueil
               </Link>
-
               <Link to="/features" onClick={closeMenu} className="nav-link">
                 Fonctionnalités
               </Link>
-
               <Link to="/login" onClick={closeMenu} className="nav-link">
                 Connexion
               </Link>
-
-              <Link
-                to="/register"
-                onClick={closeMenu}
-                className="px-4 py-2 rounded-full border border-[#9DBEBB] text-[#0F4C5C] hover:bg-[#0F4C5C] hover:text-white transition"
-              >
-                Inscription
+              <Link to="/register" onClick={closeMenu} className="nav-btn nav-btn--outline">
+                S'inscrire
               </Link>
             </>
           )}
 
-          {/* USER */}
           {token && role === "user" && (
             <>
               <Link to="/dashboard/user" onClick={closeMenu} className="nav-link">
-                Dashboard
+                Tableau de bord
               </Link>
-
               <Link to="/dashboard/user/catalog" onClick={closeMenu} className="nav-link">
                 Catalogue
               </Link>
-
               <Link to="/dashboard/user/favorites" onClick={closeMenu} className="nav-link">
                 Favoris
               </Link>
-
+              <Link to="/dashboard/user/orders" onClick={closeMenu} className="nav-link">
+                Commandes
+              </Link>
               <Link to="/dashboard/user/profiles" onClick={closeMenu} className="nav-link">
                 Profil
               </Link>
-
-              <button
-                onClick={logout}
-                className="px-4 py-2 rounded-lg bg-[#0F4C5C] text-white hover:bg-[#0c3b47] transition"
-              >
+              <button onClick={logout} className="nav-btn nav-btn--primary">
                 Déconnexion
               </button>
             </>
           )}
 
-          {/* ADMIN */}
           {token && role === "admin" && (
             <>
               <Link to="/dashboard/admin" onClick={closeMenu} className="nav-link">
-                Dashboard
+                Tableau de bord
               </Link>
-
               <Link to="/dashboard/admin/users" onClick={closeMenu} className="nav-link">
                 Utilisateurs
               </Link>
-
               <Link to="/dashboard/admin/books" onClick={closeMenu} className="nav-link">
                 Livres
               </Link>
-
               <Link to="/dashboard/admin/categories" onClick={closeMenu} className="nav-link">
                 Catégories
               </Link>
-
               <Link to="/dashboard/admin/import-books" onClick={closeMenu} className="nav-link">
                 Importer Livres
               </Link>
-
-              <button
-                onClick={logout}
-                className="px-4 py-2 rounded-lg bg-[#0F4C5C] text-white hover:bg-[#0c3b47] transition"
-              >
+              <button onClick={logout} className="nav-btn nav-btn--primary">
                 Déconnexion
               </button>
             </>
