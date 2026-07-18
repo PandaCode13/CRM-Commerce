@@ -28,8 +28,8 @@
 }
 
 body.light-mode {
-  --feature-bg: #f8fafc;
-  --feature-panel: #ffffff;
+  --feature-bg: #e8eef4;
+  --feature-panel: #f3f6f8;
   --feature-text: #0f172a;
   --feature-muted: #475569;
   --feature-border: rgba(14, 116, 144, 0.2);
@@ -38,16 +38,16 @@ body.light-mode {
 body.light-mode .service-item,
 body.light-mode .advantage-card,
 body.light-mode .pricingCard {
-  background: linear-gradient(160deg, #ffffff, #f0f9ff);
+  background: linear-gradient(160deg, #f5f7f9, #e9f0f5);
   box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12);
 }
 
 body.light-mode .pricingCard.featured {
-  background: linear-gradient(160deg, #e0f2fe, #ffffff);
+  background: linear-gradient(160deg, #dcecf5, #f3f6f8);
 }
 
-body.light-mode .section-divider { background: #f8fafc; }
-body.light-mode .service-item::before { border-color: #f8fafc; }
+body.light-mode .section-divider { background: #e8eef4; }
+body.light-mode .service-item::before { border-color: #e8eef4; }
 
 .welcome-container {
   min-height: 260px;

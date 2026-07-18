@@ -17,6 +17,7 @@ import UserDashboard from "./Pages/user/dashboard";
 import AdminDashboard from "./Pages/admin/dashboard";
 
 import ProtectedRoute from "./Components/ProtectedRoute";
+import "./responsive.css";
 
 export default function App() {
   const location = useLocation();

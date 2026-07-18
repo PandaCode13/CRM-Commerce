@@ -265,10 +265,10 @@ body {
 
 body.light-mode .navbar__inner,
 body.light-mode .navbar__menu {
-  background: #ffffff;
+  background: #eef2f5;
 }
 
-body.light-mode .navbar--scrolled .navbar__inner { background: #f8fafc; }
+body.light-mode .navbar--scrolled .navbar__inner { background: #e5ebf0; }
 body.light-mode .navbar__brand { color: #0f172a; }
 body.light-mode .navbar__brand:hover,
 body.light-mode .nav-link:hover { color: #0369a1; }
