@@ -84,3 +84,16 @@
   .site-footer__content { grid-template-columns: 1fr; gap: 2.25rem; }
   .site-footer__bottom { flex-direction: column; margin-top: 2.25rem; }
 }
+
+body.light-mode .site-footer {
+  color: #475569;
+  background: #ffffff;
+  border-top-color: rgba(14, 116, 144, 0.2);
+}
+
+body.light-mode .site-footer__brand,
+body.light-mode .site-footer h3 { color: #0f172a; }
+body.light-mode .site-footer a { color: #334155; }
+body.light-mode .site-footer a:hover { color: #0369a1; }
+body.light-mode .site-footer__cta { color: #0369a1 !important; border-color: rgba(2, 132, 199, 0.45); }
+body.light-mode .site-footer__bottom { color: #64748b; border-top-color: rgba(15, 23, 42, 0.1); }

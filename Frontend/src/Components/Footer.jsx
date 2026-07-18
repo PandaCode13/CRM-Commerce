@@ -17,6 +17,7 @@ export default function Footer() {
           <Link to="/register">Créer un compte</Link>
           <Link to="/mentions-legales">Mentions légales</Link>
           <Link to="/politique-confidentialite">Confidentialité</Link>
+          <Link to="/conditions-utilisation">Conditions d&apos;utilisation</Link>
         </nav>
 
         <div className="site-footer__contact">

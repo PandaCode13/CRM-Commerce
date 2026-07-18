@@ -1,3 +1,9 @@
 .public-container {
     
 }
+
+body.light-mode .dashboard-container,
+body.light-mode .public-container {
+  color: #0f172a;
+  background: #f8fafc;
+}
