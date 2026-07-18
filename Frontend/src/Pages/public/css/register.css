@@ -117,12 +117,12 @@
 
 body.light-mode .register-container {
   color: #334155;
-  background: linear-gradient(145deg, #ffffff, #f0f9ff);
+  background: linear-gradient(145deg, #f3f6f8, #e5edf3);
   border-color: rgba(14, 116, 144, 0.22);
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.14);
 }
 body.light-mode .register-container h2 { color: #0f172a; }
 body.light-mode .register-container .form-group label { color: #334155; }
-body.light-mode .register-container .form-group input:not([type="checkbox"]) { color: #0f172a; background: #ffffff; border-color: #94a3b8; }
-body.light-mode .register-container .form-group input:not([type="checkbox"]):focus { background: #ffffff; }
+body.light-mode .register-container .form-group input:not([type="checkbox"]) { color: #0f172a; background: #edf2f6; border-color: #94a3b8; }
+body.light-mode .register-container .form-group input:not([type="checkbox"]):focus { background: #f5f7f9; }
 body.light-mode .register-container a { color: #0369a1; }

@@ -43,10 +43,10 @@ body {
 }
 
 body.light-mode {
-  --bg-void: #f8fafc;
-  --bg-deep: #eaf6ff;
-  --bg-panel: #ffffff;
-  --bg-card: #ffffff;
+  --bg-void: #e8eef4;
+  --bg-deep: #dce6ef;
+  --bg-panel: #f3f6f8;
+  --bg-card: #f3f6f8;
   --text-primary: #0f172a;
   --text-secondary: #334155;
   --text-muted: #475569;
@@ -58,13 +58,13 @@ body.light-mode {
 }
 
 body.light-mode .public-container {
-  background: radial-gradient(circle at top, rgba(14, 165, 233, 0.14), transparent 35%), linear-gradient(to bottom, var(--bg-deep), var(--bg-void));
+  background: radial-gradient(circle at top, rgba(14, 165, 233, 0.09), transparent 35%), linear-gradient(to bottom, var(--bg-deep), var(--bg-void));
 }
 
 body.light-mode .card,
 body.light-mode .card-temoignage,
 body.light-mode .card-crm {
-  background: linear-gradient(160deg, #ffffff, #f0f9ff);
+  background: linear-gradient(160deg, #f5f7f9, #e9f0f5);
 }
 
 body.light-mode .card:hover,
