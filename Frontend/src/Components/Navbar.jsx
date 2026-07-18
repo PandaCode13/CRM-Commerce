@@ -12,7 +12,13 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hideNav, setHideNav] = useState(false);
+  const [lightMode, setLightMode] = useState(() => localStorage.getItem("theme") === "light");
   const prevScrollY = useRef(0);
+
+  useEffect(() => {
+    document.body.classList.toggle("light-mode", lightMode);
+    localStorage.setItem("theme", lightMode ? "light" : "dark");
+  }, [lightMode]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -134,6 +140,16 @@ export default function Navbar() {
               </button>
             </>
           )}
+
+          <button
+            type="button"
+            className="nav-btn nav-btn--theme"
+            onClick={() => setLightMode((currentMode) => !currentMode)}
+            aria-label={lightMode ? "Activer le mode sombre" : "Activer le mode clair"}
+            title={lightMode ? "Mode sombre" : "Mode clair"}
+          >
+            <i className={`fa-solid ${lightMode ? "fa-moon" : "fa-sun"}`} aria-hidden="true" />
+          </button>
 
         </div>
       </div>

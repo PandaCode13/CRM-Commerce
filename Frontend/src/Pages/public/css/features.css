@@ -27,6 +27,28 @@
   --feature-border: rgba(125, 211, 252, 0.2);
 }
 
+body.light-mode {
+  --feature-bg: #f8fafc;
+  --feature-panel: #ffffff;
+  --feature-text: #0f172a;
+  --feature-muted: #475569;
+  --feature-border: rgba(14, 116, 144, 0.2);
+}
+
+body.light-mode .service-item,
+body.light-mode .advantage-card,
+body.light-mode .pricingCard {
+  background: linear-gradient(160deg, #ffffff, #f0f9ff);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12);
+}
+
+body.light-mode .pricingCard.featured {
+  background: linear-gradient(160deg, #e0f2fe, #ffffff);
+}
+
+body.light-mode .section-divider { background: #f8fafc; }
+body.light-mode .service-item::before { border-color: #f8fafc; }
+
 .welcome-container {
   min-height: 260px;
   padding: 5.5rem 8% 3rem;

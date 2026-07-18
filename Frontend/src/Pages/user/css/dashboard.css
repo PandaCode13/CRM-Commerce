@@ -2,3 +2,8 @@
   min-height: 100vh;
   background: #fafaf9;
 }
+
+body.light-mode .dashboard-container {
+  color: #0f172a;
+  background: #f8fafc;
+}
