@@ -6,6 +6,7 @@ import Home from "./Pages/public/Home";
 import Features from "./Pages/public/Features";
 import Login from "./Pages/public/Login";
 import Register from "./Pages/public/Register";
+import ConditionsUtilisation from "./Components/ConditionsUtilisation";
 // import ForgotPassword from "./Pages/public/ForgotPassword";
 // import ResetPassword from "./Pages/public/ResetPassword";
 
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="/features" element={<Features />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/conditions-utilisation" element={<ConditionsUtilisation />} />
 
         {/* USER */}
         <Route path="/dashboard/user" element={
