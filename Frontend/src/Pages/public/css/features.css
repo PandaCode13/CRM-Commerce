@@ -457,3 +457,130 @@
   .service-item::before { left: -2.75rem; }
   .service-item h4 { font-size: 1.05rem; }
 }
+
+.faq {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 64px 20px;
+  color: var(--text-primary);
+}
+
+.faq h3 {
+  margin: 0 0 12px;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.faq > p {
+  margin: 0 0 40px;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px 24px;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.faq-item:hover {
+  border-color: var(--feature-border);
+}
+
+.faq-item[open] {
+  background: var(--bg-card);
+  border-color: var(--accent-soft);
+  box-shadow: var(--shadow);
+}
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item .faq-toggle {
+  position: relative;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.faq-item .faq-toggle::before,
+.faq-item .faq-toggle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.faq-item .faq-toggle::before {
+  width: 18px;
+  height: 2px;
+  transform: translate(-50%, -50%);
+}
+
+.faq-item .faq-toggle::after {
+  width: 2px;
+  height: 18px;
+  transform: translate(-50%, -50%);
+}
+
+.faq-item[open] .faq-toggle::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 0;
+}
+
+.faq-item summary:hover {
+  color: var(--accent);
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.faq-item p {
+  margin: 0 0 22px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-size: 0.95rem;
+
+  animation: faq-reveal var(--transition);
+}
+
+@keyframes faq-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

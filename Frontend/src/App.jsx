@@ -7,6 +7,8 @@ import Features from "./Pages/public/Features";
 import Login from "./Pages/public/Login";
 import Register from "./Pages/public/Register";
 import ConditionsUtilisation from "./Components/ConditionsUtilisation";
+import PolitiqueConfidentialite from "./Components/PolitiqueConfidentialite";
+import MentionsLegales from "./Components/MentionsLegales";
 // import ForgotPassword from "./Pages/public/ForgotPassword";
 // import ResetPassword from "./Pages/public/ResetPassword";
 
@@ -35,6 +37,8 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/conditions-utilisation" element={<ConditionsUtilisation />} />
+        <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+        <Route path="/legal" element={<MentionsLegales />} />
 
         {/* USER */}
         <Route path="/dashboard/user" element={
