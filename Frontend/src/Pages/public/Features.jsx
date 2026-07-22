@@ -1,5 +1,9 @@
 import "./css/features.css";
-import { Avantages, pricingCards } from "../../features/Data/DataFeaturesVisited";
+import {
+  Avantages,
+  pricingCards,
+} from "../../features/Data/DataFeaturesVisited";
+import { FAQ } from "../../features/Data/FAQ";
 import Footer from "../../Components/Footer";
 
 const Features = () => {
@@ -23,34 +27,43 @@ const Features = () => {
         <h3>Comment ça marche ?</h3>
 
         <div className="service-container">
-            <div className="service-item">
-                <h4>
-                  <i className="fas fa-search"></i>
-                  Découvrir le site 
-                </h4>
-                <p>Explorez notre site web pour en savoir plus sur nos services et solutions.</p>
-            </div>
-            <div className="service-item">
-                <h4>
-                  <i className="fas fa-shopping-cart"></i>
-                  Acheter un CRM
-                </h4>
-                <p>Choisissez et achetez le CRM qui correspond le mieux à vos besoins.</p>
-            </div>
-            <div className="service-item">
-              <h4>
-                <i className="fas fa-cogs"></i>
-                Personnaliser
-              </h4>
-              <p>Adaptez le CRM aux spécificités de votre entreprise.</p>
-            </div>
-            <div className="service-item">
-              <h4>
-                <i className="fas fa-plug"></i>
-                Déployer
-              </h4>
-              <p>Intégrez le CRM dans votre infrastructure et commencez à l'utiliser.</p>
-            </div>
+          <div className="service-item">
+            <h4>
+              <i className="fas fa-search"></i>
+              Découvrir le site
+            </h4>
+            <p>
+              Explorez notre site web pour en savoir plus sur nos services et
+              solutions.
+            </p>
+          </div>
+          <div className="service-item">
+            <h4>
+              <i className="fas fa-shopping-cart"></i>
+              Acheter un CRM
+            </h4>
+            <p>
+              Choisissez et achetez le CRM qui correspond le mieux à vos
+              besoins.
+            </p>
+          </div>
+          <div className="service-item">
+            <h4>
+              <i className="fas fa-cogs"></i>
+              Personnaliser
+            </h4>
+            <p>Adaptez le CRM aux spécificités de votre entreprise.</p>
+          </div>
+          <div className="service-item">
+            <h4>
+              <i className="fas fa-plug"></i>
+              Déployer
+            </h4>
+            <p>
+              Intégrez le CRM dans votre infrastructure et commencez à
+              l'utiliser.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -65,7 +78,11 @@ const Features = () => {
         <div className="advantages-container">
           {Avantages.map((avantage) => (
             <article key={avantage.id} className="advantage-card">
-              <img src={avantage.image} alt="" className="advantage-card__image" />
+              <img
+                src={avantage.image}
+                alt=""
+                className="advantage-card__image"
+              />
               <h4>{avantage.title}</h4>
               <p>{avantage.description}</p>
             </article>
@@ -83,12 +100,17 @@ const Features = () => {
         <h3>Nos offres</h3>
         <div className="pricingCards-container">
           {pricingCards.map((card) => (
-            <div key={card.id} className={`pricingCard ${card.featured ? "featured" : ""}`}>
+            <div
+              key={card.id}
+              className={`pricingCard ${card.featured ? "featured" : ""}`}
+            >
               {card.featured && <div className="badge">{card.badge}</div>}
               <i className={card.icon}></i>
               <h4>{card.title}</h4>
               <p className="price">{card.price}</p>
-              {card.secondaryPrice && <p className="secondary-price">{card.secondaryPrice}</p>}
+              {card.secondaryPrice && (
+                <p className="secondary-price">{card.secondaryPrice}</p>
+              )}
               <p className="billing">{card.billing}</p>
               <p className="description">{card.description}</p>
               <ul>
@@ -97,6 +119,25 @@ const Features = () => {
                 ))}
               </ul>
             </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="faq">
+        <h3>Foire aux questions</h3>
+        <p>
+          Vous avez des questions ? Consultez notre FAQ pour trouver des
+          réponses aux questions les plus fréquentes.
+        </p>
+        <div className="faq-container">
+          {FAQ.map((faq) => (
+            <details key={faq.id} className="faq-item">
+              <summary>
+                {faq.question}
+                <span className="faq-toggle" aria-hidden="true"></span>
+              </summary>
+              <p>{faq.answer}</p>
+            </details>
           ))}
         </div>
       </div>
