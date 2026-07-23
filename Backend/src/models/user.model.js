@@ -1,4 +1,4 @@
-const { pool } = require("../config/database");
+const { pool } = require("../config/db");
 
 /**
  * Créer un utilisateur
@@ -53,6 +53,15 @@ async function getUserById(id) {
  * Trouver un utilisateur par email
  */
 async function getUserByEmail(email) {
+  const result = await pool.query(
+    `SELECT * FROM users WHERE email = $1`,
+    [email]
+  );
+
+  return result.rows[0];
+}
+
+async function getUserWithPasswordByEmail(email) {
   const result = await pool.query(
     `SELECT * FROM users WHERE email = $1`,
     [email]
@@ -255,6 +264,7 @@ module.exports = {
   getAllUsers,
   getUserById,
   getUserByEmail,
+  getUserWithPasswordByEmail,
   updateUser,
   updatePassword,
   updateRole,

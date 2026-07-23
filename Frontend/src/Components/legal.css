@@ -77,3 +77,9 @@
 .legal-card a {
   color: #7dd3fc;
 }
+
+:root[data-app-theme="light"] .legal-page { background: radial-gradient(circle at top, rgba(49, 133, 185, .14), transparent 40%), #eef3f8; color: #19324a; }
+:root[data-app-theme="light"] .legal-card { border-color: #d4e0eb; background: #fbfcfe; box-shadow: 0 18px 38px rgba(28, 55, 79, .08); }
+:root[data-app-theme="light"] .legal-card__back, :root[data-app-theme="light"] .legal-card a, :root[data-app-theme="light"] .legal-card h2 { color: #2374a7; }
+:root[data-app-theme="light"] .legal-card__date { color: #71859a; }
+:root[data-app-theme="light"] .legal-card p, :root[data-app-theme="light"] .legal-card ul { color: #496176; }

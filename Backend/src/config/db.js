@@ -6,7 +6,7 @@ const pool = new Pool({
   port: Number(process.env.DB_PORT || 5432),
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
+  database: process.env.DB_NAME || process.env.DB_DATABASE,
 });
 
 async function connectDatabase() {
@@ -16,8 +16,8 @@ async function connectDatabase() {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
-        firstName VARCHAR(100) NOT NULL,
-        lastName VARCHAR(100) NOT NULL,
+        first_name VARCHAR(100) NOT NULL,
+        last_name VARCHAR(100) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
 
@@ -40,6 +40,33 @@ async function connectDatabase() {
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
       );
+    `);
+
+    // Compatibilite avec la premiere version du schema, qui utilisait
+    // "firstname" et "lastname" au lieu des noms snake_case du modele.
+    await pool.query(`
+      DO $$
+      BEGIN
+        IF EXISTS (
+          SELECT 1 FROM information_schema.columns
+          WHERE table_schema = 'public' AND table_name = 'users' AND column_name = 'firstname'
+        ) AND NOT EXISTS (
+          SELECT 1 FROM information_schema.columns
+          WHERE table_schema = 'public' AND table_name = 'users' AND column_name = 'first_name'
+        ) THEN
+          ALTER TABLE users RENAME COLUMN firstname TO first_name;
+        END IF;
+
+        IF EXISTS (
+          SELECT 1 FROM information_schema.columns
+          WHERE table_schema = 'public' AND table_name = 'users' AND column_name = 'lastname'
+        ) AND NOT EXISTS (
+          SELECT 1 FROM information_schema.columns
+          WHERE table_schema = 'public' AND table_name = 'users' AND column_name = 'last_name'
+        ) THEN
+          ALTER TABLE users RENAME COLUMN lastname TO last_name;
+        END IF;
+      END $$;
     `);
 
     console.log("✅ Base de données connectée.");

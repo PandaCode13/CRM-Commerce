@@ -584,3 +584,21 @@
     transform: translateY(0);
   }
 }
+
+:root[data-app-theme="light"] {
+  --feature-bg: #eef3f8;
+  --feature-panel: #f7f9fc;
+  --feature-text: #19324a;
+  --feature-muted: #587087;
+  --feature-accent: #2374a7;
+  --feature-border: #d4e0eb;
+}
+
+:root[data-app-theme="light"] .service-item,
+:root[data-app-theme="light"] .advantage-card,
+:root[data-app-theme="light"] .pricingCard {
+  background: #fbfcfe;
+  box-shadow: 0 16px 36px rgba(28, 55, 79, 0.08);
+}
+
+:root[data-app-theme="light"] .service-container::before { background: linear-gradient(90deg, #d4e0eb, var(--feature-accent), #d4e0eb); }
