@@ -1,26 +1,33 @@
+// auth.middleware.js
 const jwt = require("jsonwebtoken");
 
 function authenticate(req, res, next) {
-  const authorization = req.headers.authorization;
-  const token = authorization?.startsWith("Bearer ") ? authorization.slice(7) : null;
+  const authHeader = req.headers.authorization;
 
-  if (!token) return res.status(401).json({ message: "Jeton d'authentification requis." });
-  if (!process.env.JWT_SECRET) return res.status(500).json({ message: "JWT_SECRET est manquant." });
+  if (!authHeader) {
+    return res.status(401).json({
+      success: false,
+      message: "Token manquant."
+    });
+  }
+
+  const token = authHeader.split(" ")[1];
 
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = { id: Number(payload.sub), role: payload.role };
-    return next();
-  } catch {
-    return res.status(401).json({ message: "Jeton invalide ou expiré." });
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    req.user = decoded;
+
+    next();
+
+  } catch (error) {
+
+    return res.status(401).json({
+      success: false,
+      message: "Token invalide."
+    });
+
   }
 }
 
-function authorize(...roles) {
-  return (req, res, next) => {
-    if (!roles.includes(req.user.role)) return res.status(403).json({ message: "Accès non autorisé." });
-    return next();
-  };
-}
-
-module.exports = { authenticate, authorize };
+module.exports = authenticate;
