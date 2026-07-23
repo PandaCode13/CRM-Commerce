@@ -84,3 +84,9 @@
   .site-footer__content { grid-template-columns: 1fr; gap: 2.25rem; }
   .site-footer__bottom { flex-direction: column; margin-top: 2.25rem; }
 }
+
+:root[data-app-theme="light"] .site-footer { color: #496176; background: #e6eef6; border-top-color: #d4e0eb; }
+:root[data-app-theme="light"] .site-footer__brand, :root[data-app-theme="light"] .site-footer h3 { color: #19324a; }
+:root[data-app-theme="light"] .site-footer a { color: #496176; }
+:root[data-app-theme="light"] .site-footer a:hover { color: #176b9e; }
+:root[data-app-theme="light"] .site-footer__bottom { border-top-color: #d4e0eb; color: #627b91; }

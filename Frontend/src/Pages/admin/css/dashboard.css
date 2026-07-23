@@ -1,3 +1,12 @@
-.public-container {
-    
+.admin-dashboard {
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
+  padding: 48px;
+  background: #07111c;
+  color: #edf5fc;
+}
+
+:root[data-app-theme="light"] .admin-dashboard {
+  background: #eef3f8;
+  color: #19324a;
 }

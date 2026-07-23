@@ -20,6 +20,22 @@
   --transition: 0.35s ease;
 }
 
+:root[data-app-theme="light"] {
+  --bg-void: #eef3f8;
+  --bg-deep: #f7f9fc;
+  --bg-panel: #e6eef6;
+  --bg-card: #fbfcfe;
+  --accent: #2374a7;
+  --accent-soft: #3185b9;
+  --accent-hover: #176b9e;
+  --accent-glow: rgba(35, 116, 167, 0.16);
+  --text-primary: #19324a;
+  --text-secondary: #496176;
+  --text-muted: #627b91;
+  --border: #d4e0eb;
+  --shadow: 0 16px 36px rgba(28, 55, 79, 0.08);
+}
+
 /* ===========================
    GLOBAL
 =========================== */

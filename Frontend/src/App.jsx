@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 
 // PUBLIC
@@ -19,13 +19,9 @@ import AdminDashboard from "./Pages/admin/dashboard";
 import ProtectedRoute from "./Components/ProtectedRoute";
 
 export default function App() {
-  const location = useLocation();
-
-  const hideNavbar = location.pathname.startsWith("/dashboard");
-
   return (
     <>
-      {!hideNavbar && <Navbar />}
+      <Navbar />
 
       <Routes>
         {/* DEFAULT */}
