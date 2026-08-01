@@ -6,8 +6,8 @@ const { pool } = require("../config/db");
 async function createUser(user) {
   const query = `
     INSERT INTO users
-    (first_name, last_name, email, password, role, type_client)
-    VALUES ($1, $2, $3, $4, $5, $6)
+    (first_name, last_name, email, password, role)
+    VALUES ($1, $2, $3, $4, $5)
     RETURNING *;
   `;
 
@@ -17,7 +17,6 @@ async function createUser(user) {
     user.email,
     user.password,
     user.role,
-    user.type_client,
   ];
 
   const result = await pool.query(query, values);
@@ -81,9 +80,8 @@ async function updateUser(id, user) {
       last_name = $2,
       email = $3,
       role = $4,
-      type_client = $5,
       updated_at = NOW()
-    WHERE id = $6
+    WHERE id = $5
     RETURNING *;
   `;
 
@@ -92,7 +90,6 @@ async function updateUser(id, user) {
     user.last_name,
     user.email,
     user.role,
-    user.type_client,
     id,
   ];
 
@@ -140,19 +137,35 @@ async function updateRole(id, role) {
 }
 
 /**
- * Modifier le type de client
+ * Creer le profil client lie a un compte utilisateur.
  */
-async function updateCustomerType(id, type_client) {
+async function createClient(userId, status = "regular") {
   const result = await pool.query(
     `
-    UPDATE users
-    SET
-      type_client = $1,
-      updated_at = NOW()
-    WHERE id = $2
+    INSERT INTO clients (user_id, status)
+    VALUES ($1, $2)
     RETURNING *;
     `,
-    [type_client, id]
+    [userId, status]
+  );
+
+  return result.rows[0];
+}
+
+/**
+ * Modifier le statut d'un client.
+ */
+async function updateCustomerType(id, status) {
+  const result = await pool.query(
+    `
+    UPDATE clients
+    SET
+      status = $1,
+      updated_at = NOW()
+    WHERE user_id = $2
+    RETURNING *;
+    `,
+    [status, id]
   );
 
   return result.rows[0];
@@ -259,8 +272,16 @@ async function deleteUsers(ids) {
   return result.rows;
 }
 
+export function getUserFullName(user) {
+  if (!user) return null;
+  const firstName = user.first_name || user.firstName || "";
+  const lastName = user.last_name || user.lastName || "";
+  return `${firstName} ${lastName}`.trim();
+}
+
 module.exports = {
   createUser,
+  createClient,
   getAllUsers,
   getUserById,
   getUserByEmail,
@@ -274,5 +295,6 @@ module.exports = {
   deleteUser,
   countUsers,
   emailExists,
-  deleteUsers
+  deleteUsers,
+  getUserFullName,
 };

@@ -30,3 +30,8 @@ export function saveSession({ token, user }) {
   localStorage.setItem("role", user.role);
   localStorage.setItem("user", JSON.stringify(user));
 }
+
+export function getFullName() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  return user ? user.fullname : null;
+}

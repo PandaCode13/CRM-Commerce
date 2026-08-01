@@ -82,15 +82,15 @@ Créer un fichier `.env`.
 Exemple :
 
 ```env
-PORT=5000
+PORT
 
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=password
-DB_NAME=commerce_crm
+DB_HOST
+DB_PORT
+DB_USER
+DB_PASSWORD
+DB_NAME
 
-JWT_SECRET=your_secret_key
+JWT_SECRET
 ```
 
 ---

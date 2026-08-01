@@ -56,6 +56,8 @@ export default function Navbar() {
             <Link to="/dashboard/user/catalog" onClick={closeMenu} className="nav-link">Catalogue</Link>
             <Link to="/dashboard/user/favorites" onClick={closeMenu} className="nav-link">Favoris</Link>
             <Link to="/dashboard/user/orders" onClick={closeMenu} className="nav-link">Commandes</Link>
+            <Link to="/dashboard/user/contact" onClick={closeMenu} className="nav-link">Contactez-Nous</Link>
+            <Link to="/dashboard/user/profil" onClick={closeMenu} className="nav-link">Profil</Link>
             <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="nav-btn nav-btn--theme">
               {theme === "dark" ? "Mode clair" : "Mode sombre"}
             </button>
@@ -64,9 +66,20 @@ export default function Navbar() {
 
           {token && role === "admin" && <>
             <Link to="/dashboard/admin" onClick={closeMenu} className="nav-link">Tableau de bord</Link>
-            <Link to="/dashboard/admin/users" onClick={closeMenu} className="nav-link">Utilisateurs</Link>
-            <Link to="/dashboard/admin/books" onClick={closeMenu} className="nav-link">CRM</Link>
-            <Link to="/dashboard/admin/categories" onClick={closeMenu} className="nav-link">Catégories</Link>
+            <div className="nav-dropdown">
+              <button type="button" aria-haspopup="true" className="nav-link nav-dropdown__trigger">
+                Gestion <span className="nav-dropdown__caret">▾</span>
+              </button>
+              <div className="nav-dropdown__menu">
+                <Link to="/dashboard/admin/users" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion des utilisateurs</Link>
+                <Link to="/dashboard/admin/reponses" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion de réponses</Link>
+                <Link to="/dashboard/admin/crm" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion des CRM</Link>
+                <Link to="/dashboard/admin/commands" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion des commandes</Link>
+                <Link to="/dashboard/admin/contrats" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion des contrats</Link>
+                <Link to="/dashboard/admin/juridique" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion Juridique</Link>
+              </div>
+            </div>
+            <Link to="/dashboard/user/profil" onClick={closeMenu} className="nav-link">Profil</Link>
             <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="nav-btn nav-btn--theme">
               {theme === "dark" ? "Mode clair" : "Mode sombre"}
             </button>
