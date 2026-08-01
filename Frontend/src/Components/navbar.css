@@ -111,11 +111,77 @@ body {
 .nav-btn--theme { border: 1px solid #38516a; background: #13283b; color: #dceaf6; }
 .nav-btn--theme:hover { background: #1c3a54; }
 
+/* Sous-menu "Gestion" (dashboard admin). Mobile : s'ouvre dans le flux vertical. */
+.nav-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.nav-dropdown__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+}
+
+.nav-dropdown__caret {
+  font-size: 0.7rem;
+  transition: transform 0.25s ease;
+}
+
+.nav-dropdown:hover .nav-dropdown__caret,
+.nav-dropdown:focus-within .nav-dropdown__caret { transform: rotate(180deg); }
+
+.nav-dropdown__menu {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+  padding: 6px 0 6px 12px;
+}
+
+.nav-dropdown:hover .nav-dropdown__menu,
+.nav-dropdown:focus-within .nav-dropdown__menu { display: flex; }
+
+.nav-dropdown__item {
+  padding: 10px 14px;
+  border-radius: 6px;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.nav-dropdown__item::after { display: none; }
+.nav-dropdown__item:hover { background: rgba(144, 202, 249, 0.1); }
+
 @media (min-width: 768px) {
   .navbar__toggle { display: none; }
   .navbar__menu { display: flex; position: static; width: auto; background: transparent; border: none; flex-direction: row; align-items: center; gap: 28px; padding: 0; animation: none; }
-  .nav-link { padding: 6px 0; }
-  .nav-btn { padding: 10px 24px; }
+  .nav-link { padding: 8px 0; }
+  .nav-btn { padding: 11px 26px; }
+
+  /* Sous-menu "Gestion" : menu déroulant sous le lien au hover. */
+  .nav-dropdown { width: auto; }
+  .nav-dropdown__trigger { width: auto; }
+  .nav-dropdown__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 260px;
+    gap: 6px;
+    margin-top: 0;
+    padding: 10px;
+    background: #13283b;
+    border: 1px solid #1c344a;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    z-index: 110;
+  }
 }
 
 /* Navigation specifique aux espaces connectes : horizontale, a gauche, sombre. */
@@ -124,52 +190,75 @@ body {
   justify-content: flex-start;
   background: #091522;
   border-bottom: 1px solid #1c344a;
+  padding: 18px 40px;
 }
 
+.navbar--user .navbar__logo,
+.navbar--admin .navbar__logo { justify-content: flex-start; }
+
 .navbar--user .navbar__menu,
-.navbar--admin .navbar__menu { background: #091522; }
+.navbar--admin .navbar__menu { background: #091522; margin-left: auto; justify-content: flex-end; }
 
 @media (min-width: 768px) {
   .navbar--user .navbar__menu,
-  .navbar--admin .navbar__menu { margin-left: 42px; gap: 26px; }
+  .navbar--admin .navbar__menu { gap: 22px; }
+  .navbar--user .nav-btn--theme,
+  .navbar--admin .nav-btn--theme { margin-left: 12px; }
   .navbar--user .nav-btn--primary,
-  .navbar--admin .nav-btn--primary { margin-left: 14px; }
+  .navbar--admin .nav-btn--primary { margin-left: 18px; }
 }
 
-/* Variante claire reservee aux espaces connectes : contraste doux et lisible. */
-:root[data-app-theme="light"] .navbar--user .navbar__inner,
-:root[data-app-theme="light"] .navbar--admin .navbar__inner {
+/* Variante claire : contraste doux et lisible (appliquee a toutes les navbars). */
+:root[data-app-theme="light"] .navbar__inner {
   background: #f7f9fc;
-  border-bottom-color: #d7e0ea;
+  border-bottom: 1px solid #d7e0ea;
 }
 
-:root[data-app-theme="light"] .navbar--user .navbar__menu,
-:root[data-app-theme="light"] .navbar--admin .navbar__menu { background: #f7f9fc; }
+:root[data-app-theme="light"] .navbar--scrolled .navbar__inner { background: #f7f9fc; }
 
-:root[data-app-theme="light"] .navbar--user .navbar__brand,
-:root[data-app-theme="light"] .navbar--admin .navbar__brand { color: #19324a; }
+:root[data-app-theme="light"] .navbar__menu { background: #f7f9fc; border-top-color: #d7e0ea; }
 
-:root[data-app-theme="light"] .navbar--user .nav-link,
-:root[data-app-theme="light"] .navbar--admin .nav-link { color: #496176; }
+:root[data-app-theme="light"] .navbar__brand { color: #19324a; }
+:root[data-app-theme="light"] .navbar__brand:hover { color: #176b9e; }
 
-:root[data-app-theme="light"] .navbar--user .nav-link:hover,
-:root[data-app-theme="light"] .navbar--admin .nav-link:hover { color: #176b9e; }
+:root[data-app-theme="light"] .nav-link { color: #496176; }
+:root[data-app-theme="light"] .nav-link::after { background: #176b9e; }
+:root[data-app-theme="light"] .nav-link:hover { color: #176b9e; }
+:root[data-app-theme="light"] .nav-link:active { color: #176b9e; }
 
-:root[data-app-theme="light"] .navbar--user .nav-btn--theme,
-:root[data-app-theme="light"] .navbar--admin .nav-btn--theme {
+:root[data-app-theme="light"] .navbar__toggle {
+  border-color: #c6d3df;
+  color: #254761;
+}
+:root[data-app-theme="light"] .navbar__toggle:hover {
+  border-color: #176b9e;
+  color: #176b9e;
+  background: rgba(23, 107, 158, 0.08);
+}
+
+:root[data-app-theme="light"] .nav-btn--outline {
+  border-color: #254761;
+  color: #254761;
+}
+:root[data-app-theme="light"] .nav-btn--outline:hover {
+  background: #176b9e;
+  color: #fff;
+  border-color: #176b9e;
+}
+
+:root[data-app-theme="light"] .nav-btn--theme {
   border-color: #c6d3df;
   background: #eaf1f7;
   color: #254761;
 }
+:root[data-app-theme="light"] .nav-btn--theme:hover { background: #dce8f2; }
 
-:root[data-app-theme="light"] .navbar:not(.navbar--user):not(.navbar--admin) .navbar__inner,
-:root[data-app-theme="light"] .navbar:not(.navbar--user):not(.navbar--admin) .navbar__menu {
-  background: #f7f9fc;
-  border-color: #d7e0ea;
+:root[data-app-theme="light"] .nav-dropdown__item:hover { background: #eaf1f7; }
+
+@media (min-width: 768px) {
+  :root[data-app-theme="light"] .nav-dropdown__menu {
+    background: #ffffff;
+    border-color: #d7e0ea;
+    box-shadow: 0 10px 30px rgba(25, 50, 74, 0.14);
+  }
 }
-
-:root[data-app-theme="light"] .navbar:not(.navbar--user):not(.navbar--admin) .navbar__brand { color: #19324a; }
-:root[data-app-theme="light"] .navbar:not(.navbar--user):not(.navbar--admin) .nav-link { color: #496176; }
-:root[data-app-theme="light"] .navbar:not(.navbar--user):not(.navbar--admin) .nav-link:hover { color: #176b9e; }
-:root[data-app-theme="light"] .navbar:not(.navbar--user):not(.navbar--admin) .navbar__toggle { border-color: #c6d3df; color: #254761; }
-:root[data-app-theme="light"] .navbar:not(.navbar--user):not(.navbar--admin) .nav-btn--theme { border-color: #c6d3df; background: #eaf1f7; color: #254761; }

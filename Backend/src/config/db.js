@@ -2,11 +2,11 @@ const { Pool } = require("pg");
 require("dotenv").config();
 
 const pool = new Pool({
-  host: process.env.DB_HOST || "localhost",
-  port: Number(process.env.DB_PORT || 5432),
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME || process.env.DB_DATABASE,
+  database: process.env.DB_DATABASE,
 });
 
 async function connectDatabase() {
@@ -23,17 +23,6 @@ async function connectDatabase() {
 
         role VARCHAR(20) NOT NULL DEFAULT 'user'
           CHECK (role IN ('user', 'admin')),
-
-        type_client VARCHAR(20) NOT NULL DEFAULT 'regular'
-          CHECK (
-            type_client IN (
-              'regular',
-              'silver',
-              'gold',
-              'vip',
-              'enterprise'
-            )
-          ),
 
         is_active BOOLEAN NOT NULL DEFAULT TRUE,
 
@@ -65,6 +54,37 @@ async function connectDatabase() {
           WHERE table_schema = 'public' AND table_name = 'users' AND column_name = 'last_name'
         ) THEN
           ALTER TABLE users RENAME COLUMN lastname TO last_name;
+        END IF;
+      END $$;
+    `);
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS clients (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+        status VARCHAR(20) NOT NULL DEFAULT 'regular'
+          CHECK (status IN ('regular', 'silver', 'gold', 'vip', 'enterprise')),
+        company_name VARCHAR(150),
+        phone VARCHAR(30),
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+      );
+    `);
+
+    // Migration des anciennes donnees : type_client devient clients.status.
+    await pool.query(`
+      DO $$
+      BEGIN
+        IF EXISTS (
+          SELECT 1 FROM information_schema.columns
+          WHERE table_schema = 'public' AND table_name = 'users' AND column_name = 'type_client'
+        ) THEN
+          INSERT INTO clients (user_id, status)
+          SELECT id, type_client FROM users
+          WHERE role = 'user'
+          ON CONFLICT (user_id) DO UPDATE SET status = EXCLUDED.status;
+
+          ALTER TABLE users DROP COLUMN type_client;
         END IF;
       END $$;
     `);

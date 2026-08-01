@@ -9,7 +9,6 @@ function publicUser(user) {
     lastName: user.last_name,
     email: user.email,
     role: user.role,
-    typeClient: user.type_client,
     isActive: user.is_active,
     createdAt: user.created_at,
   };
@@ -60,8 +59,8 @@ async function register(req, res, next) {
       email,
       password: passwordHash,
       role: "user",
-      type_client: "regular",
     });
+    await userModel.createClient(user.id);
 
     return res.status(201).json({ token: createToken(user), user: publicUser(user) });
   } catch (error) {
