@@ -272,7 +272,7 @@ async function deleteUsers(ids) {
   return result.rows;
 }
 
-export function getUserFullName(user) {
+function getUserFullName(user) {
   if (!user) return null;
   const firstName = user.first_name || user.firstName || "";
   const lastName = user.last_name || user.lastName || "";

@@ -72,14 +72,15 @@ export default function Navbar() {
               </button>
               <div className="nav-dropdown__menu">
                 <Link to="/dashboard/admin/users" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion des utilisateurs</Link>
+                <Link to="/dashboard/admin/orders" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion des commandes</Link>
+                <Link to="/dashboard/admin/messages" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion des messages</Link>
                 <Link to="/dashboard/admin/reponses" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion de réponses</Link>
-                <Link to="/dashboard/admin/crm" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion des CRM</Link>
-                <Link to="/dashboard/admin/commands" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion des commandes</Link>
+                <Link to="/dashboard/admin/products" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion des produits</Link>
                 <Link to="/dashboard/admin/contrats" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion des contrats</Link>
                 <Link to="/dashboard/admin/juridique" onClick={closeMenu} className="nav-link nav-dropdown__item">Gestion Juridique</Link>
               </div>
             </div>
-            <Link to="/dashboard/user/profil" onClick={closeMenu} className="nav-link">Profil</Link>
+            <Link to="/dashboard/admin/profil" onClick={closeMenu} className="nav-link">Profil</Link>
             <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="nav-btn nav-btn--theme">
               {theme === "dark" ? "Mode clair" : "Mode sombre"}
             </button>
