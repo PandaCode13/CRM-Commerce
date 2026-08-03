@@ -1,4 +1,3 @@
-import React from "react";
 import "./legal.css";
 
 export default function MentionsLegales() {
