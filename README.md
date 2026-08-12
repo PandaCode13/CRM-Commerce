@@ -70,7 +70,7 @@ npm run dev
 ```bash
 cd backend
 npm install
-npm run dev
+npm run start
 ```
 
 ---
@@ -99,7 +99,7 @@ JWT_SECRET
 
 Une documentation détaillée est disponible :
 
-* `README-FEATURES.md`
+* `Features.md (https://github.com/PandaCode13/CRM-Commerce/blob/main/Features.md)`
 * `README-TECHNOLOGIES.md`
 
 ---
