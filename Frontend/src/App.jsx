@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import BackToTop from "./Components/BackToTop";
+import ConnectionMonitor from "./Components/ConnectionMonitor";
 
 // PUBLIC
 import Home from "./Pages/public/Home";
@@ -37,6 +38,8 @@ import ProtectedLayout from "./Components/ProtectedLayout";
 export default function App() {
   return (
     <>
+      <ConnectionMonitor />
+
       <Navbar />
 
       <BackToTop />
