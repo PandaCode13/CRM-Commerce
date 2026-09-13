@@ -1,3 +1,4 @@
+import "./css/catalog.css"
 
 export default function UserCatalog() {
   return (
