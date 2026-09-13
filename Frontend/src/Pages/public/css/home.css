@@ -116,10 +116,14 @@ img {
 
 /* ===========================
    BUTTONS
+   (shared by hero + commencement sections)
 =========================== */
 
-.hero-section .btn {
-  padding: 15px 30px;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
   border-radius: 14px;
   font-weight: 600;
   border: 2px solid var(--accent);
@@ -128,19 +132,19 @@ img {
   backdrop-filter: blur(8px);
 }
 
-.hero-section .btn:hover {
+.btn:hover {
   background: var(--accent);
   color: #071018;
   transform: translateY(-4px);
   box-shadow: 0 15px 35px var(--accent-glow);
 }
 
-.hero-section .btn-secondary {
+.btn-secondary {
   background: var(--accent);
   color: #071018;
 }
 
-.hero-section .btn-secondary:hover {
+.btn-secondary:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
   color: white;
@@ -151,14 +155,14 @@ img {
 =========================== */
 
 .engagement-section {
-  padding: 7rem 8%;
+  padding: 5.5rem 8%;
   background: radial-gradient(circle at 50% 35%, rgba(56, 189, 248, 0.08), transparent 52%);
 }
 
 .engagement-section .title {
   font-size: 2.6rem;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .engagement-section .card-container {
@@ -189,7 +193,7 @@ img {
   );
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 2.5rem 2rem 2rem;
+  padding: 1.75rem 1.5rem;
   text-align: center;
   transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
   box-shadow: var(--shadow);
@@ -232,10 +236,10 @@ img {
 
 .card-image {
   position: relative;
-  width: 96px;
-  height: 96px;
+  width: 72px;
+  height: 72px;
   object-fit: contain;
-  margin: 0 auto 1.25rem;
+  margin: 0 auto 1rem;
   transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
   filter: drop-shadow(0 4px 12px rgba(56, 189, 248, 0.15));
   z-index: 1;
@@ -243,9 +247,9 @@ img {
 
 .card-title {
   position: relative;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.6rem;
   background: linear-gradient(135deg, var(--text-primary), var(--accent-soft));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -267,13 +271,13 @@ img {
 =========================== */
 
 .temoignages-section {
-  padding: 7rem 8%;
+  padding: 5.5rem 8%;
 }
 
 .temoignages-section .title {
   font-size: 2.6rem;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .rating {
@@ -300,7 +304,7 @@ img {
   );
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 2.5rem 2rem 2rem;
+  padding: 1.75rem 1.5rem;
   text-align: center;
   transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
   box-shadow: var(--shadow);
@@ -318,11 +322,11 @@ img {
 }
 
 .card-temoignage-image {
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 0 auto 1.25rem;
+  margin: 0 auto 1rem;
   border: 3px solid var(--accent);
   transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -351,13 +355,13 @@ img {
 =========================== */
 
 .proposition-section {
-  padding: 7rem 8%;
+  padding: 5.5rem 8%;
 }
 
 .proposition-section .title {
   font-size: 2.6rem;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .card-crm {
@@ -368,7 +372,7 @@ img {
   );
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 2.5rem 2rem 2rem;
+  padding: 1.75rem 1.5rem;
   text-align: center;
   transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
   box-shadow: var(--shadow);
@@ -386,10 +390,10 @@ img {
 }
 
 .card-image-crm {
-  width: 120px;
-  height: 120px;
+  width: 92px;
+  height: 92px;
   object-fit: contain;
-  margin: 0 auto 1.25rem;
+  margin: 0 auto 1rem;
   transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
   filter: drop-shadow(0 4px 12px rgba(56, 189, 248, 0.15));
 }
@@ -399,9 +403,9 @@ img {
 }
 
 .card-title-crm {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.6rem;
   background: linear-gradient(135deg, var(--text-primary), var(--accent-soft));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -410,28 +414,14 @@ img {
 
 .card-description-crm {
   color: var(--text-muted);
-  line-height: 1.75;
+  line-height: 1.7;
   font-size: 0.95rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .card-crm .btn-secondary {
-  background: var(--accent);
-  color: #071018;
-  padding: 12px 24px;
-  border-radius: 14px;
-  font-weight: 600;
-  border: 2px solid var(--accent);
-  transition: var(--transition);
-  display: inline-block;
-}
-
-.card-crm .btn-secondary:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
-  color: white;
-  transform: translateY(-4px);
-  box-shadow: 0 15px 35px var(--accent-glow);
+  padding: 11px 22px;
+  font-size: 0.9rem;
 }
 
 /* ===========================
@@ -439,7 +429,7 @@ img {
 =========================== */
 
 .commencement-section {
-  padding: 7rem 8%;
+  padding: 5.5rem 8%;
   text-align: center;
 }
 
@@ -453,34 +443,6 @@ img {
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.commencement-section .btn {
-  padding: 15px 30px;
-  border-radius: 14px;
-  font-weight: 600;
-  border: 2px solid var(--accent);
-  color: var(--accent);
-  transition: var(--transition);
-  backdrop-filter: blur(8px);
-}
-
-.commencement-section .btn:hover {
-  background: var(--accent);
-  color: #071018;
-  transform: translateY(-4px);
-  box-shadow: 0 15px 35px var(--accent-glow);
-}
-
-.commencement-section .btn-secondary {
-  background: var(--accent);
-  color: #071018;
-}
-
-.commencement-section .btn-secondary:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
-  color: white;
 }
 
 /* ===========================

@@ -40,8 +40,8 @@ export const pricingCards = [
     id: 3,
     title: "Développement sur mesure",
     icon: "fa-solid fa-screwdriver-wrench",
-    price: "350€-650€",
-    billing: "Par semaine",
+    price: "350€-650€/semaine",
+    billing: "facturation à la semaine",
     secondaryPrice: "soit 1 400€-2 000€/mois",
     description: "Des fonctionnalités en plus ? On personnalise votre CRM.",
     features: [

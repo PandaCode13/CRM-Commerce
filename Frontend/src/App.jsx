@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./Components/Navbar";
+import BackToTop from "./Components/BackToTop";
 
 // PUBLIC
 import Home from "./Pages/public/Home";
@@ -37,6 +38,8 @@ export default function App() {
   return (
     <>
       <Navbar />
+
+      <BackToTop />
 
       <Routes>
         {/* DEFAULT */}

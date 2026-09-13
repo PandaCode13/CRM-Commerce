@@ -22,7 +22,7 @@ export default function Footer() {
 
         <div className="site-footer__contact">
           <h3>Besoin d'aide ?</h3>
-          <a href="mailto:contact@crm-commerce.com">contact@crm-commerce.com</a>
+          <a href="mailto:smohamedabdo895@gmail.com">smohamedabdo895@gmail.com</a>
           <Link to="/login" className="site-footer__cta">Se connecter <i className="fa-solid fa-arrow-right" aria-hidden="true" /></Link>
         </div>
       </div>
