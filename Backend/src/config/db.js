@@ -34,10 +34,21 @@ async function connectDatabase() {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS clients (
         id SERIAL PRIMARY KEY,
-        first_name VARCHAR(100) NOT NULL,
-        last_name VARCHAR(100) NOT NULL,
-        email VARCHAR(255) UNIQUE NOT NULL,
+        user_id INTEGER UNIQUE NOT NULL
+          REFERENCES users(id) ON DELETE CASCADE,
+        status VARCHAR(20) NOT NULL DEFAULT 'regular',
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
       );
+    `);
+
+    await pool.query(`
+      ALTER TABLE clients
+      ADD COLUMN IF NOT EXISTS user_id INTEGER UNIQUE
+        REFERENCES users(id) ON DELETE CASCADE,
+      ADD COLUMN IF NOT EXISTS status VARCHAR(20) NOT NULL DEFAULT 'regular',
+      ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
     `);
 
     console.log("✅ Base de données connectée.");
