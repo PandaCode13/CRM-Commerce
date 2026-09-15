@@ -1,12 +1,34 @@
+import { useState } from "react";
 import "./css/features.css";
 import {
   Avantages,
   pricingCards,
 } from "../../features/Data/DataFeaturesVisited";
-import { FAQ } from "../../features/Data/FAQ";
+import { FAQ, FAQ_CATEGORIES } from "../../features/Data/FAQ";
 import Footer from "../../Components/Footer";
 
 const Features = () => {
+  const [activeCategory, setActiveCategory] = useState("Toutes");
+  const [openId, setOpenId] = useState(null);
+
+  const visibleFAQ =
+    activeCategory === "Toutes"
+      ? FAQ
+      : FAQ.filter((faq) => faq.category === activeCategory);
+
+  const changeCategory = (category) => {
+    setActiveCategory(category);
+    const next =
+      category === "Toutes"
+        ? FAQ[0]
+        : FAQ.find((faq) => faq.category === category);
+    setOpenId(next ? next.id : null);
+  };
+
+  const toggleFaq = (id) => {
+    setOpenId((current) => (current === id ? null : id));
+  };
+
   return (
     <>
       <div className="welcome-container">
@@ -129,15 +151,52 @@ const Features = () => {
           Vous avez des questions ? Consultez notre FAQ pour trouver des
           réponses aux questions les plus fréquentes.
         </p>
+
+        <div className="faq-filters" role="group" aria-label="Filtrer les questions">
+          <button type="button" onClick={() => changeCategory("Toutes")} className={`faq-filter ${activeCategory === "Toutes" ? "faq-filter--active" : ""}`}>
+            Toutes
+          </button>
+          {FAQ_CATEGORIES.map((category) => (
+            <button
+              key={category}
+              type="button"
+              onClick={() => changeCategory(category)}
+              className={`faq-filter ${activeCategory === category ? "faq-filter--active" : ""}`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        <p className="faq-count" aria-live="polite">
+          {visibleFAQ.length} question{visibleFAQ.length > 1 ? "s" : ""}
+        </p>
+
         <div className="faq-container">
-          {FAQ.map((faq) => (
-            <details key={faq.id} className="faq-item">
-              <summary>
+          {visibleFAQ.map((faq) => (
+            <div key={faq.id} className={`faq-item ${openId === faq.id ? "faq-item--open" : ""}`}>
+              <button
+                type="button"
+                className="faq-question"
+                onClick={() => toggleFaq(faq.id)}
+                aria-expanded={openId === faq.id}
+                aria-controls={`faq-answer-${faq.id}`}
+                id={`faq-question-${faq.id}`}
+              >
                 {faq.question}
                 <span className="faq-toggle" aria-hidden="true"></span>
-              </summary>
-              <p>{faq.answer}</p>
-            </details>
+              </button>
+              <div
+                className="faq-answer"
+                id={`faq-answer-${faq.id}`}
+                role="region"
+                aria-labelledby={`faq-question-${faq.id}`}
+              >
+                <div className="faq-answer__inner">
+                  <p>{faq.answer}</p>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
