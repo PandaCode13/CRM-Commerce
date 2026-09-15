@@ -24,6 +24,34 @@ export default function UserCatalog() {
         <input type="text" name="filter" id="" placeholder="Rechercher un produit..." />
         <button onSearch={() => {}}>Rechercher</button>
       </div>
+
+      <div className="display-products">
+        <div className="filters">
+          <h4>Filtres</h4>
+          <div className="filter-items">
+            <div className="first-filter-item">
+              <label htmlFor="category">Secteur:</label>
+              <select id="category">
+                <option value="">Tous les secteurs</option>
+                <option value="electronics">Hotelerie</option>
+                <option value="clothing">Finance</option>
+                <option value="immobilier">Immobilier</option>
+              </select>
+            </div>
+            <div className="second-filter-item">
+
+            </div>
+          </div>
+        </div>
+
+        <div className="products">
+          
+        </div>
+        <p>Nombre de produits: {products.length}</p>
+        <div className="grid-products-double">
+
+        </div>
+      </div>
     </div>
   );
 }
