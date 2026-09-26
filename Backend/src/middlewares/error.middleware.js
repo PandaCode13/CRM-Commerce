@@ -1,16 +1,10 @@
-// error.middleware.js
+function errorHandler(err, req, res, next) {
+  console.error(err);
 
-function errorHandler(err,req,res,next){
-
-    console.error(err);
-
-    res.status(500).json({
-
-        success:false,
-        message:err.message
-
-    });
-
+  res.status(500).json({
+    success: false,
+    message: "Une erreur interne est survenue.",
+  });
 }
 
 module.exports = errorHandler;

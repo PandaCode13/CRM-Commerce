@@ -1,0 +1,30 @@
+:root {
+  color-scheme: dark;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.protected-loading {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  padding: 48px 20px;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent, #7dd3fc);
+  outline-offset: 2px;
+}
+
+:root[data-app-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-app-theme="light"] .protected-loading {
+  color: #496176;
+}

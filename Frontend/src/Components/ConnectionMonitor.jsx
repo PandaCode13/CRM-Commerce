@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { clearSession } from "../Services/user.services";
+import { API_URL, clearSession } from "../Services/user.services";
 
 const API_ORIGIN = (() => {
   try {
-    return new URL(import.meta.env.VITE_API_URL || "http://localhost:5000/api").origin;
+    return new URL(API_URL).origin;
   } catch {
     return "http://localhost:5000";
   }

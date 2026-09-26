@@ -1,5 +1,9 @@
 const { pool } = require("../config/db");
 
+const PUBLIC_FIELDS = `
+  id, first_name, last_name, email, role, is_active, created_at, updated_at
+`;
+
 /**
  * Créer un utilisateur
  */
@@ -28,7 +32,7 @@ async function createUser(user) {
  */
 async function getAllUsers() {
   const result = await pool.query(`
-    SELECT *
+    SELECT ${PUBLIC_FIELDS}
     FROM users
     ORDER BY created_at DESC;
   `);
@@ -41,7 +45,7 @@ async function getAllUsers() {
  */
 async function getUserById(id) {
   const result = await pool.query(
-    `SELECT * FROM users WHERE id = $1`,
+    `SELECT ${PUBLIC_FIELDS} FROM users WHERE id = $1`,
     [id]
   );
 
@@ -53,7 +57,7 @@ async function getUserById(id) {
  */
 async function getUserByEmail(email) {
   const result = await pool.query(
-    `SELECT * FROM users WHERE email = $1`,
+    `SELECT ${PUBLIC_FIELDS} FROM users WHERE email = $1`,
     [email]
   );
 
@@ -82,7 +86,7 @@ async function updateUser(id, user) {
       role = $4,
       updated_at = NOW()
     WHERE id = $5
-    RETURNING *;
+    RETURNING ${PUBLIC_FIELDS};
   `;
 
   const values = [
@@ -109,7 +113,7 @@ async function updatePassword(id, password) {
       password = $1,
       updated_at = NOW()
     WHERE id = $2
-    RETURNING *;
+    RETURNING ${PUBLIC_FIELDS};
     `,
     [password, id]
   );
@@ -128,7 +132,7 @@ async function updateRole(id, role) {
       role = $1,
       updated_at = NOW()
     WHERE id = $2
-    RETURNING *;
+    RETURNING ${PUBLIC_FIELDS};
     `,
     [role, id]
   );
@@ -163,7 +167,7 @@ async function updateCustomerType(id, status) {
       status = $1,
       updated_at = NOW()
     WHERE user_id = $2
-    RETURNING *;
+    RETURNING ${PUBLIC_FIELDS};
     `,
     [status, id]
   );
@@ -182,7 +186,7 @@ async function activateUser(id) {
       is_active = true,
       updated_at = NOW()
     WHERE id = $1
-    RETURNING *;
+    RETURNING ${PUBLIC_FIELDS};
     `,
     [id]
   );
@@ -201,7 +205,7 @@ async function deactivateUser(id) {
       is_active = false,
       updated_at = NOW()
     WHERE id = $1
-    RETURNING *;
+    RETURNING ${PUBLIC_FIELDS};
     `,
     [id]
   );

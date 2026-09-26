@@ -1,6 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./src/routes/auth.route");
+const userRoutes = require("./src/routes/user.route");
+const notFound = require("./src/middlewares/notFound.middleware");
+const errorHandler = require("./src/middlewares/error.middleware");
 
 const app = express();
 
@@ -9,11 +12,9 @@ app.use(express.json());
 
 app.get("/", (req, res) => res.json({ message: "API opérationnelle" }));
 app.use("/api/auth", authRoutes);
-app.use("/api/users", require("./src/routes/user.route"));
+app.use("/api/users", userRoutes);
 
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500).json({ message: "Une erreur interne est survenue." });
-});
+app.use(notFound);
+app.use(errorHandler);
 
 module.exports = app;

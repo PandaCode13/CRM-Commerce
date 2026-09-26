@@ -11,8 +11,6 @@ import Register from "./Pages/public/Register";
 import ConditionsUtilisation from "./Components/ConditionsUtilisation";
 import PolitiqueConfidentialite from "./Components/PolitiqueConfidentialite";
 import MentionsLegales from "./Components/MentionsLegales";
-// import ForgotPassword from "./Pages/public/ForgotPassword";
-// import ResetPassword from "./Pages/public/ResetPassword";
 
 // USER 
 import UserDashboard from "./Pages/user/dashboard";

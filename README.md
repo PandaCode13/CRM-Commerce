@@ -83,14 +83,17 @@ Exemple :
 
 ```env
 PORT
+CLIENT_URL
 
 DB_HOST
 DB_PORT
 DB_USER
 DB_PASSWORD
-DB_NAME
+DB_DATABASE
+DB_SSL
 
 JWT_SECRET
+JWT_EXPIRES_IN
 ```
 
 ---
@@ -100,7 +103,9 @@ JWT_SECRET
 Une documentation détaillée est disponible :
 
 * `Features.md (https://github.com/PandaCode13/CRM-Commerce/blob/main/Features.md)`
-* `README-TECHNOLOGIES.md`
+* `Technologie.md`
+* `design.md`
+* Schema de base : [Backend/src/docs/db.md](Backend/src/docs/db.md)
 
 ---
 

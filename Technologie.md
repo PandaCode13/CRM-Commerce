@@ -3,11 +3,12 @@
 ## Frontend
 
 * React
-* TypeScript
 * Vite
 * React Router
-* Axios
+* Font Awesome
 * CSS3
+
+L'API est consommée via `fetch` (voir `Frontend/src/Services/user.services.js`).
 
 Le Frontend fournit une interface utilisateur moderne, rapide et responsive.
 

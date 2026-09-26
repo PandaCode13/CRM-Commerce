@@ -1,5 +1,10 @@
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-const API_URL_BACKEND = "CRM-Commerce-Backend";
+
+export { API_URL };
+
+function getToken() {
+  return localStorage.getItem("token");
+}
 
 export function clearSession() {
   localStorage.removeItem("token");
@@ -7,22 +12,27 @@ export function clearSession() {
   localStorage.removeItem("user");
 }
 
-function goHome() {
+export function goHome() {
   if (window.location.pathname !== "/home") {
     window.location.assign("/home");
   }
 }
 
 async function request(path, options = {}) {
+  const token = getToken();
   let response;
 
   try {
-    response = await fetch(`${API_URL || API_URL_BACKEND}${path}`, {
-      headers: { "Content-Type": "application/json", ...options.headers },
+    response = await fetch(`${API_URL}${path}`, {
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        ...options.headers,
+      },
       ...options,
     });
   } catch {
-    if (localStorage.getItem("token")) {
+    if (token) {
       clearSession();
       goHome();
     }
@@ -48,13 +58,30 @@ export function register(user) {
   });
 }
 
+export function getCurrentUser() {
+  return request("/auth/me");
+}
+
 export function saveSession({ token, user }) {
   localStorage.setItem("token", token);
   localStorage.setItem("role", user.role);
   localStorage.setItem("user", JSON.stringify(user));
 }
 
+export function logout() {
+  clearSession();
+  goHome();
+}
+
 export function getFullName() {
-  const user = JSON.parse(localStorage.getItem("user"));
-  return user ? user.fullname : null;
+  try {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user?.fullname) return user.fullname;
+    if (user?.firstName || user?.lastName) {
+      return `${user.firstName || ""} ${user.lastName || ""}`.trim();
+    }
+    return null;
+  } catch {
+    return null;
+  }
 }
