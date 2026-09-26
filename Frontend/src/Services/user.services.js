@@ -1,4 +1,5 @@
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API_URL_BACKEND = "CRM-Commerce-Backend";
 
 export function clearSession() {
   localStorage.removeItem("token");
@@ -16,7 +17,7 @@ async function request(path, options = {}) {
   let response;
 
   try {
-    response = await fetch(`${API_URL}${path}`, {
+    response = await fetch(`${API_URL || API_URL_BACKEND}${path}`, {
       headers: { "Content-Type": "application/json", ...options.headers },
       ...options,
     });
