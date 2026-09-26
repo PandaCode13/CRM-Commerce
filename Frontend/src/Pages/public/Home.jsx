@@ -41,8 +41,24 @@ const reviewJsonLd = {
   })),
 };
 
+function useJsonLd(...schemas) {
+  useEffect(() => {
+    const scripts = schemas.map((schema) => {
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.textContent = JSON.stringify(schema);
+      document.head.appendChild(script);
+      return script;
+    });
+
+    return () => scripts.forEach((script) => script.remove());
+  }, [schemas]);
+}
+
 const Home = () => {
   const containerRef = useRef(null);
+
+  useJsonLd(productJsonLd, reviewJsonLd);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -79,13 +95,6 @@ const Home = () => {
 
   return (
     <div className="public-container page-enter" ref={containerRef}>
-      <script type="application/ld+json">
-        {JSON.stringify(productJsonLd)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(reviewJsonLd)}
-      </script>
-
       <div className="hero-section">
         <h1 className="title">Bienvenue dans le commerce CRM</h1>
         <p className="subtitle">Découvrez et achetez un CRM correspondant à vos besoins.</p>
@@ -139,9 +148,11 @@ const Home = () => {
               />
               <h3 className="card-title-crm" itemProp="name">{card.name}</h3>
               <p className="card-description-crm" itemProp="description">{card.description}</p>
-              <Link to={card.url_frontend} className="btn btn-secondary" itemProp="url">
-                Visiter
-              </Link>
+              {card.url_frontend && (
+                <Link to={card.url_frontend} className="btn btn-secondary" itemProp="url">
+                  Visiter
+                </Link>
+              )}
             </article>
           ))}
         </div>

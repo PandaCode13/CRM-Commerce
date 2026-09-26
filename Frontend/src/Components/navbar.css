@@ -196,6 +196,9 @@ body {
 .navbar--user .navbar__logo,
 .navbar--admin .navbar__logo { justify-content: flex-start; }
 
+.navbar--user .navbar__toggle,
+.navbar--admin .navbar__toggle { margin-left: auto; }
+
 .navbar--user .navbar__menu,
 .navbar--admin .navbar__menu { background: #091522; margin-left: auto; justify-content: flex-end; }
 

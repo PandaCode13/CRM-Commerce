@@ -1,10 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
+import { logout } from "../Services/user.services";
 import "./navbar.css";
 
 export default function Navbar() {
-  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,12 +16,9 @@ export default function Navbar() {
     localStorage.setItem("dashboard-theme", theme);
   }, [theme]);
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    localStorage.removeItem("user");
+  const handleLogout = () => {
     closeMenu();
-    navigate("/home");
+    logout();
   };
 
   const dashboardPath = role === "admin" ? "/dashboard/admin" : "/dashboard/user";
@@ -61,7 +58,7 @@ export default function Navbar() {
             <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="nav-btn nav-btn--theme">
               {theme === "dark" ? "Mode clair" : "Mode sombre"}
             </button>
-            <button onClick={logout} className="nav-btn nav-btn--primary">Déconnexion</button>
+            <button onClick={handleLogout} className="nav-btn nav-btn--primary">Déconnexion</button>
           </>}
 
           {token && role === "admin" && <>
@@ -84,7 +81,7 @@ export default function Navbar() {
             <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="nav-btn nav-btn--theme">
               {theme === "dark" ? "Mode clair" : "Mode sombre"}
             </button>
-            <button onClick={logout} className="nav-btn nav-btn--primary">Déconnexion</button>
+            <button onClick={handleLogout} className="nav-btn nav-btn--primary">Déconnexion</button>
           </>}
         </div>
       </div>

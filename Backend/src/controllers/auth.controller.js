@@ -7,6 +7,7 @@ function publicUser(user) {
     id: user.id,
     firstName: user.first_name,
     lastName: user.last_name,
+    fullname: `${user.first_name} ${user.last_name}`.trim(),
     email: user.email,
     role: user.role,
     isActive: user.is_active,

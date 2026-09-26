@@ -44,15 +44,6 @@ async function connectDatabase() {
     `);
 
     await pool.query(`
-      ALTER TABLE clients
-      ADD COLUMN IF NOT EXISTS user_id INTEGER UNIQUE
-        REFERENCES users(id) ON DELETE CASCADE,
-      ADD COLUMN IF NOT EXISTS status VARCHAR(20) NOT NULL DEFAULT 'regular',
-      ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-      ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
-    `);
-
-    await pool.query(`
       CREATE TABLE IF NOT EXISTS products (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
@@ -85,5 +76,4 @@ async function connectDatabase() {
   }
 }
 
-module.exports = connectDatabase;
-module.exports.pool = pool;
+module.exports = { connectDatabase, pool };
