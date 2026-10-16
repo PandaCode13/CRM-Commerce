@@ -1,0 +1,98 @@
+/* ==========================================================================
+   CRM Commerce — Primitives d'interface partagées
+   Panneau, badge de statut, lien d'action, eyebrow.
+   Consommées par les vues connectées via @import. Couleurs : tokens uniquement.
+   ========================================================================== */
+
+.crm-eyebrow {
+  margin-bottom: var(--space-2);
+  color: var(--text-low);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+}
+
+/* ===========================
+   Panneau
+   =========================== */
+
+.crm-panel {
+  height: 100%;
+  padding: var(--card-padding);
+  border: var(--border-width) solid var(--border-default);
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+}
+
+.crm-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
+  border-bottom: var(--border-width) solid var(--border-subtle);
+}
+
+.crm-panel__title {
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+}
+
+.crm-panel__meta {
+  flex-shrink: 0;
+  color: var(--text-low);
+  font-size: var(--fs-caption);
+}
+
+.crm-panel__foot {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--space-4);
+}
+
+.crm-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--link-fg);
+  font-size: var(--fs-body-s);
+  font-weight: var(--fw-medium);
+}
+
+.crm-link:hover {
+  color: var(--link-fg-hover);
+}
+
+.crm-link i {
+  font-size: var(--fs-caption);
+  transition: transform var(--transition-fast);
+}
+
+.crm-link:hover i {
+  transform: translateX(2px);
+}
+
+/* ===========================
+   Badge de statut
+   =========================== */
+
+.crm-status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.crm-status-badge--brand { background: var(--brand-wash); color: var(--brand-300); }
+.crm-status-badge--info { background: var(--info-wash); color: var(--info-fg); }
+.crm-status-badge--success { background: var(--success-wash); color: var(--success-fg); }
+.crm-status-badge--warning { background: var(--warning-wash); color: var(--warning-fg); }
+.crm-status-badge--error { background: var(--error-wash); color: var(--error-fg); }
+.crm-status-badge--neutral { background: var(--surface-raised); color: var(--text-mid); }

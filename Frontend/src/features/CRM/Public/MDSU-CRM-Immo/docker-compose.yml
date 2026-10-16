@@ -1,0 +1,72 @@
+name: mdsu-crm-immo
+
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: mdsu-crm-immo-db
+    restart: unless-stopped
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    networks:
+      - mdsu
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mdsu-crm-immo-backend
+    restart: unless-stopped
+    ports:
+      - "${BACKEND_PORT}:8101"
+    environment:
+      NODE_ENV: production
+      PORT: "8101"
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${DB_NAME}
+      CORS_ORIGIN: "http://localhost:${FRONTEND_PORT}"
+    volumes:
+      - ./backend/uploads:/app/uploads
+      - ./backend/logs:/app/logs
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - mdsu
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mdsu-crm-immo-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT}:80"
+    depends_on:
+      - backend
+    networks:
+      - mdsu
+
+volumes:
+  db_data:
+    driver: local
+
+networks:
+  mdsu:
+    driver: bridge

@@ -15,6 +15,7 @@ import MentionsLegales from "./Components/MentionsLegales";
 // USER 
 import UserDashboard from "./Pages/user/dashboard";
 import UserCatalog from "./Pages/user/catalog";
+import UserCrmDetail from "./Pages/user/crmDetail";
 import UserFavorites from "./Pages/user/favorites";
 import UserOrders from "./Pages/user/orders";
 import UserContact from "./Pages/user/contact";
@@ -59,6 +60,7 @@ export default function App() {
         <Route element={<ProtectedLayout role="user" />}>
           <Route path="/dashboard/user" element={<UserDashboard />} />
           <Route path="/dashboard/user/catalog" element={<UserCatalog />} />
+          <Route path="/dashboard/user/catalog/:id" element={<UserCrmDetail />} />
           <Route path="/dashboard/user/favorites" element={<UserFavorites />} />
           <Route path="/dashboard/user/orders" element={<UserOrders />} />
           <Route path="/dashboard/user/contact" element={<UserContact />} />

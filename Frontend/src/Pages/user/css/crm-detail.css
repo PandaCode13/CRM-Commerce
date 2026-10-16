@@ -1,0 +1,320 @@
+/* ==========================================================================
+   CRM Commerce — Détail d'un CRM sectoriel (espace utilisateur)
+   DA : brand-book.md §K.2 « Page de détail » (en-tête + rail + contenu).
+   Couleurs : tokens uniquement.
+   ========================================================================== */
+
+@import "../../../styles/components.css";
+
+.crm-detail {
+  min-height: calc(100vh - var(--navbar-height));
+  padding: var(--space-12) var(--section-padding-x) var(--space-20);
+  background: var(--surface-canvas);
+  color: var(--text-hi);
+}
+
+.crm-detail__inner {
+  max-width: var(--layout-max);
+  margin-inline: auto;
+}
+
+/* ===========================
+   Fil d’Ariane
+   =========================== */
+
+.crm-detail__crumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  color: var(--text-low);
+  font-size: var(--fs-caption);
+}
+
+.crm-detail__crumbs a {
+  color: var(--text-low);
+}
+
+.crm-detail__crumbs a:hover {
+  color: var(--text-hi);
+}
+
+.crm-detail__crumbs i {
+  font-size: var(--fs-caption);
+}
+
+.crm-detail__crumbs [aria-current] {
+  color: var(--text-mid);
+}
+
+/* ===========================
+   En-tête (bordure basse Line)
+   =========================== */
+
+.crm-detail__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-bottom: var(--space-6);
+  margin-bottom: var(--space-8);
+  border-bottom: var(--border-width) solid var(--border-subtle);
+}
+
+.crm-detail__title {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+}
+
+.crm-detail__subtitle {
+  margin-top: var(--space-2);
+  color: var(--text-mid);
+  font-size: var(--fs-body);
+}
+
+.crm-detail__purchase {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+.crm-detail__price {
+  color: var(--signal-fg);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+}
+
+.crm-detail__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--control-height);
+  padding-inline: var(--space-5);
+  border-radius: var(--radius-control);
+  background: var(--action-primary-bg);
+  color: var(--action-primary-fg);
+  font-size: var(--fs-body-s);
+  font-weight: var(--fw-semibold);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.crm-detail__cta:hover {
+  background: var(--action-primary-bg-hover);
+  color: var(--action-primary-fg);
+}
+
+.crm-detail__cta:active {
+  background: var(--action-primary-bg-active);
+  transform: scale(0.98);
+}
+
+/* ===========================
+   Grille : contenu + rail 320 px sticky
+   =========================== */
+
+.crm-detail__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: var(--gutter);
+  align-items: start;
+}
+
+.crm-detail__main {
+  display: grid;
+  gap: var(--gutter);
+}
+
+.crm-detail__aside {
+  position: sticky;
+  top: calc(var(--navbar-height) + var(--space-6));
+}
+
+.crm-detail__lead {
+  margin-top: var(--space-2);
+  color: var(--text-mid);
+  font-size: var(--fs-body-s);
+  line-height: var(--lh-body-s);
+}
+
+/* ===========================
+   Sections
+   =========================== */
+
+.crm-detail__section-title {
+  margin-bottom: var(--space-4);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--tr-h3);
+}
+
+/* ===========================
+   Fonctionnalités (socle commun)
+   =========================== */
+
+.crm-detail__features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+}
+
+.crm-feature {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--card-padding);
+  border: var(--border-width) solid var(--border-default);
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+}
+
+.crm-feature__icon {
+  display: grid;
+  width: var(--control-height);
+  height: var(--control-height);
+  border-radius: var(--radius-control);
+  background: var(--brand-wash);
+  color: var(--brand-300);
+  font-size: var(--fs-body-s);
+  place-items: center;
+}
+
+.crm-feature__title {
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+}
+
+.crm-feature__list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.crm-feature__item {
+  position: relative;
+  padding-left: var(--space-4);
+  color: var(--text-mid);
+  font-size: var(--fs-body-s);
+  line-height: var(--lh-body-s);
+}
+
+.crm-feature__item::before {
+  content: "";
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: var(--space-1);
+  height: var(--space-1);
+  border-radius: var(--radius-dot);
+  background: var(--brand-400);
+}
+
+/* ===========================
+   Évolutions prévues
+   =========================== */
+
+.crm-detail__planned {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.crm-detail__planned li {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--surface-raised);
+  color: var(--text-mid);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+}
+
+/* ===========================
+   Voir aussi
+   =========================== */
+
+.crm-detail__more {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+}
+
+/* ===========================
+   Fiche technique
+   =========================== */
+
+.crm-specs {
+  margin: var(--space-2) 0 0;
+}
+
+.crm-specs__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-3);
+  border-top: var(--border-width) solid var(--border-subtle);
+}
+
+.crm-specs__row:first-child {
+  border-top: 0;
+}
+
+.crm-specs__label {
+  flex-shrink: 0;
+  color: var(--text-low);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-medium);
+}
+
+.crm-specs__value {
+  margin: 0;
+  color: var(--text-hi);
+  font-size: var(--fs-body-s);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+
+@media (max-width: 1180px) {
+  .crm-detail__features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .crm-detail__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .crm-detail__aside {
+    position: static;
+  }
+}
+
+@media (max-width: 767px) {
+  .crm-detail {
+    padding-block: var(--space-8) var(--space-12);
+  }
+
+  .crm-detail__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .crm-detail__features,
+  .crm-detail__more {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,67 +1,69 @@
 import { getFullName } from "../../Services/user.services";
-import "./css/dashboard.css";
+import DashboardHeader from "../../Components/dashboard/DashboardHeader";
+import StatCard from "../../Components/dashboard/StatCard";
+import RecentRequests from "../../Components/dashboard/RecentRequests";
+import RecentOrders from "../../Components/dashboard/RecentOrders";
+import RecentActivity from "../../Components/dashboard/RecentActivity";
+import QuickActions from "../../Components/dashboard/QuickActions";
+import "../../Components/dashboard/dashboard.css";
 
-const upcomingModules = [
-  {
-    icon: "fa-solid fa-cart-shopping",
-    label: "Commandes",
-    detail: "Vos commandes apparaîtront ici dès que le module sera disponible.",
-  },
-  {
-    icon: "fa-solid fa-layer-group",
-    label: "CRM visités",
-    detail: "L'historique des CRM consultés apparaîtra dès que le catalogue sera relié à l'API.",
-  },
-  {
-    icon: "fa-regular fa-envelope",
-    label: "Messages",
-    detail: "Vos échanges avec notre équipe apparaîtront ici dès que la messagerie sera disponible.",
-  },
+const STATS = [
+  { key: "requests", label: "Demandes reçues", icon: "fa-solid fa-inbox" },
+  { key: "orders", label: "Commandes", icon: "fa-solid fa-cart-shopping" },
+  { key: "pending", label: "À traiter", icon: "fa-solid fa-hourglass-half", emphasis: true },
+  { key: "documents", label: "Documents", icon: "fa-solid fa-file-lines" },
 ];
 
-const UserDashboard = () => {
-  const userName = getFullName()?.split(" ")[0] || "utilisateur";
-
-  return (
-    <main className="user-dashboard">
-      <section className="user-dashboard__hero" aria-labelledby="user-dashboard-title">
-        <p className="user-dashboard__eyebrow">Votre espace personnel</p>
-        <h1 id="user-dashboard-title">Bonjour, {userName}</h1>
-        <p>Retrouvez en un coup d’œil l’activité liée à votre compte.</p>
-      </section>
-
-      <section className="user-dashboard__empty" aria-labelledby="next-step-title">
-        <p className="user-dashboard__eyebrow">Vue d’ensemble</p>
-        <h2 id="next-step-title">Votre activité apparaîtra ici</h2>
-        <p>
-          Les modules commandes, catalogue CRM et messagerie sont en cours de
-          connexion à l’API. Vos données s’afficheront sur cette page dès leur
-          disponibilité.
-        </p>
-      </section>
-
-      <section aria-labelledby="upcoming-title">
-        <div className="user-dashboard__section-heading">
-          <div>
-            <p className="user-dashboard__eyebrow">À venir</p>
-            <h2 id="upcoming-title">Modules à venir</h2>
-          </div>
-        </div>
-
-        <div className="user-dashboard__stats">
-          {upcomingModules.map((module) => (
-            <article className="user-stat-card" key={module.label}>
-              <span className="user-stat-card__icon" aria-hidden="true">
-                <i className={module.icon}></i>
-              </span>
-              <p className="user-stat-card__label">{module.label}</p>
-              <p className="user-stat-card__detail">{module.detail}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-    </main>
-  );
+const OVERVIEW = {
+  stats: {
+    requests: { value: 0 },
+    orders: { value: 0 },
+    pending: { value: 0 },
+    documents: { value: 0 },
+  },
+  recentRequests: [],
+  recentOrders: [],
+  recentActivities: [],
 };
 
-export default UserDashboard;
+export default function UserDashboard() {
+  const firstName = getFullName()?.split(" ")[0] || "utilisateur";
+  const { stats, recentRequests, recentOrders, recentActivities } = OVERVIEW;
+
+  return (
+    <main className="crm-dashboard">
+      <div className="crm-dashboard__inner">
+        <DashboardHeader firstName={firstName} />
+
+        <div className="crm-dashboard__grid">
+          {STATS.map((stat) => (
+            <div className="crm-dashboard__cell crm-dashboard__cell--stat" key={stat.key}>
+              <StatCard
+                icon={stat.icon}
+                label={stat.label}
+                emphasis={stat.emphasis}
+                value={stats[stat.key].value}
+              />
+            </div>
+          ))}
+
+          <div className="crm-dashboard__cell crm-dashboard__cell--requests">
+            <RecentRequests requests={recentRequests} total={stats.requests.value} />
+          </div>
+
+          <div className="crm-dashboard__cell crm-dashboard__cell--orders">
+            <RecentOrders orders={recentOrders} total={stats.orders.value} />
+          </div>
+
+          <div className="crm-dashboard__cell crm-dashboard__cell--activity">
+            <RecentActivity activities={recentActivities} />
+          </div>
+
+          <div className="crm-dashboard__cell crm-dashboard__cell--quick">
+            <QuickActions />
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
