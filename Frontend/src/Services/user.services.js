@@ -85,3 +85,11 @@ export function getFullName() {
     return null;
   }
 }
+
+export function getSessionEmail() {
+  try {
+    return JSON.parse(localStorage.getItem("user"))?.email || null;
+  } catch {
+    return null;
+  }
+}

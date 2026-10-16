@@ -1,0 +1,430 @@
+/* ==========================================================================
+   CRM Commerce — Design Tokens v1.0
+   Source : brand-book.md
+   Règle absolue : aucun code HEX en dehors de ce fichier.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ---------------------------------------------------------------------
+     1. PRIMITIFS — Matière (neutres teintés violet, hue 258°)
+     --------------------------------------------------------------------- */
+  --ink-950: #08070D;
+  --ink-900: #0D0B16;
+  --ink-850: #12101F;
+  --ink-800: #191627;
+  --ink-700: #232036;
+  --ink-600: #2E2A44;
+  --ink-500: #4A4566;
+
+  /* Primitifs — Marque (violet-indigo) */
+  --brand-700: #4A2FD6;
+  --brand-600: #5B3DE8;
+  --brand-500: #6C4BF4;
+  --brand-400: #8E72F8;
+  --brand-300: #B6A3FC;
+
+  /* Primitifs — Signal (ambre, commerce) */
+  --signal-700: #96590A;
+  --signal-600: #C97F1E;
+  --signal-500: #F2A93B;
+
+  /* Primitifs — Data (cyan, graphiques uniquement) */
+  --data-500: #38BDF8;
+
+  /* Primitifs — Texte (dark) */
+  --text-000: #FFFFFF;
+  --text-100: #F4F2FA;
+  --text-300: #B6B1CC;
+  --text-500: #918CA9;
+  --text-inverse: #0A0910;
+
+  /* Primitifs — États */
+  --state-success: #2FBF71;
+  --state-error: #F2555A;
+  --state-warning: #E8A33D;
+  --state-info: #4C8DF6;
+
+  /* Primitifs — Gris fonctionnels (non sémantiques) */
+  --white: #FFFFFF;
+  --black: #000000;
+
+  /* ---------------------------------------------------------------------
+     2. SÉMANTIQUES — Thème sombre (défaut)
+     --------------------------------------------------------------------- */
+  --surface-canvas: var(--ink-950);
+  --surface-section: var(--ink-900);
+  --surface-panel: var(--ink-850);
+  --surface-card: var(--ink-800);
+  --surface-raised: var(--ink-700);
+  --surface-sunken: var(--ink-900);
+  --surface-overlay: rgba(8, 7, 13, 0.72);
+  --surface-scrim: rgba(8, 7, 13, 0.55);
+
+  --text-hi: var(--text-100);
+  --text-mid: var(--text-300);
+  --text-low: var(--text-500);
+  --text-on-brand: var(--text-000);
+  /* Texte sur aplat ambre : l'ambre est clair, il exige un texte sombre (9,9:1) */
+  --text-on-signal: var(--text-inverse);
+
+  --border-subtle: rgba(244, 242, 250, 0.06);
+  --border-default: var(--ink-600);
+  --border-strong: var(--ink-500);
+  --border-focus: var(--brand-400);
+
+  --action-primary-bg: var(--brand-500);
+  --action-primary-bg-hover: var(--brand-400);
+  --action-primary-bg-active: var(--brand-600);
+  --action-primary-fg: var(--text-on-brand);
+
+  --action-secondary-bg: var(--ink-700);
+  --action-secondary-bg-hover: var(--ink-600);
+  --action-secondary-fg: var(--text-hi);
+
+  --action-ghost-fg: var(--text-mid);
+  --action-ghost-bg-hover: var(--ink-700);
+
+  --link-fg: var(--brand-300);
+  --link-fg-hover: var(--brand-400);
+
+  --focus-ring: 0 0 0 3px rgba(108, 75, 244, 0.12);
+  --focus-outline: 2px solid var(--brand-400);
+  --focus-outline-offset: 2px;
+
+  /* Washes */
+  --brand-wash: rgba(108, 75, 244, 0.12);
+  --brand-wash-strong: rgba(108, 75, 244, 0.22);
+  --signal-wash: rgba(242, 169, 59, 0.12);
+  --data-wash: rgba(56, 189, 248, 0.12);
+  --success-wash: rgba(47, 191, 113, 0.13);
+  --error-wash: rgba(242, 85, 90, 0.13);
+  --warning-wash: rgba(232, 163, 61, 0.13);
+  --info-wash: rgba(76, 141, 246, 0.13);
+
+  /* États */
+  --signal-fg: var(--signal-500);
+  --success-fg: var(--state-success);
+  --error-fg: var(--state-error);
+  --warning-fg: var(--state-warning);
+  --info-fg: var(--state-info);
+
+  /* Graphiques */
+  --chart-grid: rgba(244, 242, 250, 0.08);
+  --chart-axis: var(--text-low);
+  --chart-series-1: var(--data-500);
+  --chart-series-2: var(--brand-400);
+  --chart-series-3: var(--signal-500);
+  --chart-series-4: var(--state-success);
+  --chart-series-5: var(--state-warning);
+  --chart-series-6: var(--text-500);
+
+  /* ---------------------------------------------------------------------
+     3. SÉMANTIQUES — Ombres (sombre : la bordure sépare, l'ombre flotterait)
+     --------------------------------------------------------------------- */
+  --shadow-1: 0 1px 2px rgba(8, 7, 13, 0.4);
+  --shadow-2: 0 4px 12px rgba(8, 7, 13, 0.45);
+  --shadow-3: 0 12px 32px rgba(8, 7, 13, 0.55);
+  --shadow-4: 0 24px 64px rgba(8, 7, 13, 0.65);
+
+  /* ---------------------------------------------------------------------
+     4. TYPOGRAPHIE
+     --------------------------------------------------------------------- */
+  --font-brand: "IBM Plex Sans", Inter, system-ui, sans-serif;
+  --font-ui: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --fs-display-xl: clamp(40px, 6vw, 72px);
+  --fs-h1: clamp(30px, 4.5vw, 48px);
+  --fs-h2: clamp(23px, 3vw, 33px);
+  --fs-h3: 19px;
+  --fs-h4: 16px;
+  --fs-lead: 18px;
+  --fs-body-l: 16px;
+  --fs-body: 15px;
+  --fs-body-s: 14px;
+  --fs-label: 13px;
+  --fs-eyebrow: 11.5px;
+  --fs-caption: 12px;
+  --fs-kpi: 32px;
+  --fs-mono-id: 13px;
+
+  --lh-display: 1.05;
+  --lh-h1: 1.1;
+  --lh-h2: 1.18;
+  --lh-h3: 1.3;
+  --lh-h4: 1.35;
+  --lh-lead: 1.65;
+  --lh-body: 1.6;
+  --lh-body-s: 1.55;
+  --lh-tight: 1.4;
+
+  --tr-display: -0.03em;
+  --tr-h1: -0.025em;
+  --tr-h2: -0.02em;
+  --tr-h3: -0.01em;
+  --tr-eyebrow: 0.1em;
+  --tr-caption: 0.01em;
+  --tr-mono: 0.01em;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ---------------------------------------------------------------------
+     5. ESPACEMENTS — base 4px
+     --------------------------------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* ---------------------------------------------------------------------
+     6. RAYONS — le rayon est une ÉCHELLE qui encode la taille du module
+     --------------------------------------------------------------------- */
+  --radius-dot: 3px;     /* pastille d'état */
+  --radius-node: 4px;    /* nœud, tag, pastille */
+  --radius-control: 9px; /* champ, bouton, badge */
+  --radius-card: 16px;   /* carte, tuile KPI */
+  --radius-panel: 22px;  /* panneau, modale */
+  --radius-pill: 999px;  /* badge de statut */
+
+  /* ---------------------------------------------------------------------
+     7. BORDURES
+     --------------------------------------------------------------------- */
+  --border-width: 1px;
+  --border-width-emphasis: 2px;
+  --border-width-accent: 3px;
+
+  /* ---------------------------------------------------------------------
+     8. TRANSITIONS
+     --------------------------------------------------------------------- */
+  --easing-brand: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --transition-fast: 120ms var(--easing-brand);
+  --transition-base: 180ms var(--easing-brand);
+  --transition-slow: 280ms var(--easing-brand);
+
+  /* ---------------------------------------------------------------------
+     9. LAYOUT
+     --------------------------------------------------------------------- */
+  --layout-max: 1440px;
+  --layout-content: 1180px;
+  --layout-prose: 720px;
+  --sidebar-width: 248px;
+  --sidebar-width-collapsed: 72px;
+  --navbar-height: 64px;
+  --gutter: 16px;
+  --section-padding-y: var(--space-24);
+  --section-padding-x: var(--space-6);
+
+  /* Densité tableau */
+  --row-height: 44px;
+  --row-height-compact: 36px;
+  --row-height-comfortable: 56px;
+  --cell-padding-y: var(--space-3);
+  --cell-padding-x: var(--space-4);
+
+  /* Composants */
+  --control-height-s: 32px;
+  --control-height: 40px;
+  --control-height-l: 48px;
+  --card-padding: var(--space-5);
+  --icon-size: 20px;
+  --icon-stroke: 1.75;
+
+  /* ---------------------------------------------------------------------
+     10. Z-INDEX
+     --------------------------------------------------------------------- */
+  --z-base: 0;
+  --z-sticky: 100;
+  --z-dropdown: 400;
+  --z-drawer: 600;
+  --z-modal: 800;
+  --z-toast: 1000;
+
+  /* ---------------------------------------------------------------------
+     11. TEINTE MODULE — différenciation sectorielle
+     Remplace : le liseré 3px des cartes, l'icône de catégorie,
+     l'anneau du graphe d'architecture. Jamais un bouton ni un fond de page.
+     --------------------------------------------------------------------- */
+  --module-hue: var(--brand-500);
+  --module: #6C4BF4;   /* Socle par défaut */
+
+  --module-immobilier: #6C4BF4;
+  --module-sante: #3F8CF5;
+  --module-hotellerie: #2FA9A0;
+  --module-restaurant: #E08A2E;
+  --module-rh: #B455D6;
+  --module-automobile: #4E7BE0;
+  --module-batiment: #8A7A4E;
+
+  /* ---------------------------------------------------------------------
+     12. MOTIF « LA TRAME » — fond signature
+     --------------------------------------------------------------------- */
+  --trame-gap: 8px;
+  --trame-size: 12px;
+  --trame-opacity: 0.04;
+  --trame-dot-opacity: 0.22;
+}
+
+/* ==========================================================================
+   THÈME CLAIR — documents, contrats, lecture dense
+   Utiliser : data-app-theme="light"
+   ========================================================================== */
+
+:root[data-app-theme="light"] {
+  color-scheme: light;
+
+  --surface-canvas: #F6F7FA;
+  --surface-section: #FFFFFF;
+  --surface-panel: #FFFFFF;
+  --surface-card: #FFFFFF;
+  --surface-raised: #EEF0F5;
+  --surface-sunken: #F1F3F7;
+  --surface-overlay: rgba(23, 19, 42, 0.4);
+  --surface-scrim: rgba(23, 19, 42, 0.28);
+
+  --text-hi: #17132A;
+  --text-mid: #565173;
+  --text-low: #6B6478;
+  --text-on-brand: #FFFFFF;
+  --text-on-signal: #FFFFFF;
+
+  --border-subtle: #EEECF3;
+  --border-default: #E4E2EC;
+  --border-strong: #D2CFDE;
+  --border-focus: var(--brand-600);
+
+  --action-primary-bg: var(--brand-600);
+  --action-primary-bg-hover: var(--brand-700);
+  --action-primary-bg-active: var(--brand-700);
+  --action-primary-fg: #FFFFFF;
+
+  --action-secondary-bg: #EEF0F5;
+  --action-secondary-bg-hover: #E4E2EC;
+  --action-secondary-fg: var(--text-hi);
+
+  --action-ghost-fg: var(--text-mid);
+  --action-ghost-bg-hover: #EEF0F5;
+
+  --link-fg: var(--brand-700);
+  --link-fg-hover: #4A2FD6;
+
+  --focus-ring: 0 0 0 3px rgba(91, 61, 232, 0.14);
+  --focus-outline: 2px solid var(--brand-600);
+
+  --brand-wash: rgba(91, 61, 232, 0.1);
+  --brand-wash-strong: rgba(91, 61, 232, 0.18);
+  --signal-wash: rgba(201, 127, 30, 0.12);
+  --data-wash: rgba(56, 189, 248, 0.14);
+
+  --signal-fg: var(--signal-700);
+  --success-fg: #157F4A;
+  --error-fg: #C2333A;
+  --warning-fg: #A96A12;
+  --info-fg: #1E5BC4;
+
+  --success-wash: rgba(21, 127, 74, 0.09);
+  --error-wash: rgba(194, 51, 58, 0.09);
+  --warning-wash: rgba(169, 106, 18, 0.1);
+  --info-wash: rgba(30, 91, 196, 0.09);
+
+  --chart-grid: #EAE8F0;
+  --chart-axis: #6B6478;
+  --chart-series-1: #1E9AC6;
+  --chart-series-2: var(--brand-600);
+  --chart-series-3: var(--signal-700);
+  --chart-series-4: #157F4A;
+  --chart-series-5: #A96A12;
+  --chart-series-6: #6B6478;
+
+  --shadow-1: 0 1px 2px rgba(23, 19, 42, 0.06);
+  --shadow-2: 0 4px 12px rgba(23, 19, 42, 0.08);
+  --shadow-3: 0 12px 32px rgba(23, 19, 42, 0.12);
+  --shadow-4: 0 24px 64px rgba(23, 19, 42, 0.16);
+
+  --trame-opacity: 0.05;
+  --trame-dot-opacity: 0.16;
+}
+
+/* ==========================================================================
+   BASES
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-canvas);
+  color: var(--text-hi);
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-brand);
+  color: var(--text-hi);
+  margin: 0;
+}
+h1 { font-size: var(--fs-h1); font-weight: var(--fw-bold); line-height: var(--lh-h1); letter-spacing: var(--tr-h1); }
+h2 { font-size: var(--fs-h2); font-weight: var(--fw-semibold); line-height: var(--lh-h2); letter-spacing: var(--tr-h2); }
+h3 { font-size: var(--fs-h3); font-weight: var(--fw-semibold); line-height: var(--lh-h3); letter-spacing: var(--tr-h3); }
+h4 { font-size: var(--fs-h4); font-weight: var(--fw-semibold); line-height: var(--lh-h4); }
+
+p { margin: 0; }
+
+a { color: var(--link-fg); text-decoration: none; transition: color var(--transition-fast); }
+a:hover { color: var(--link-fg-hover); }
+
+code, pre, kbd, samp { font-family: var(--font-mono); font-size: var(--fs-mono-id); }
+code { background: var(--surface-sunken); padding: 1px 5px; border-radius: var(--radius-node); }
+
+/* Chiffres alignés : obligatoire dans tout tableau, KPI, prix, audit */
+.num,
+td.num,
+th.num,
+.kpi,
+.price {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+  border-radius: var(--radius-node);
+}
+
+::selection {
+  background: var(--brand-wash-strong);
+  color: var(--text-hi);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

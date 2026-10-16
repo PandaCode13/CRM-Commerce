@@ -1,0 +1,254 @@
+/* ==========================================================================
+   CRM Commerce — Page contact (espace utilisateur)
+   Consomme les primitives partagées. Couleurs : tokens uniquement.
+   ========================================================================== */
+
+@import "../../../styles/components.css";
+
+.crm-contact {
+  min-height: calc(100vh - var(--navbar-height));
+  padding: var(--space-12) var(--section-padding-x) var(--space-20);
+  background: var(--surface-canvas);
+  color: var(--text-hi);
+}
+
+.crm-contact__inner {
+  max-width: var(--layout-content);
+  margin-inline: auto;
+}
+
+/* ===========================
+   En-tête
+   =========================== */
+
+.crm-contact__header {
+  max-width: var(--layout-prose);
+  margin-bottom: var(--space-10);
+}
+
+.crm-contact__title {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+}
+
+.crm-contact__subtitle {
+  margin-top: var(--space-3);
+  color: var(--text-mid);
+  font-size: var(--fs-body);
+}
+
+.crm-contact__hint {
+  margin-bottom: var(--space-4);
+  color: var(--text-mid);
+  font-size: var(--fs-body-s);
+}
+
+/* ===========================
+   Grille
+   =========================== */
+
+.crm-contact__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--gutter);
+  align-items: start;
+}
+
+.crm-contact__main,
+.crm-contact__aside {
+  display: grid;
+  gap: var(--gutter);
+}
+
+/* ===========================
+   Formulaire
+   =========================== */
+
+.crm-contact__form {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-2);
+}
+
+.crm-contact__field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.crm-contact__label {
+  color: var(--text-mid);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-medium);
+}
+
+.crm-contact__control {
+  width: 100%;
+  min-height: var(--control-height);
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width) solid var(--border-default);
+  border-radius: var(--radius-control);
+  background: var(--surface-panel);
+  color: var(--text-hi);
+  font-family: inherit;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body-s);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.crm-contact__control::placeholder {
+  color: var(--text-low);
+}
+
+.crm-contact__control:hover {
+  border-color: var(--border-strong);
+}
+
+.crm-contact__control:focus-visible {
+  border-color: var(--border-focus);
+  box-shadow: var(--focus-ring);
+}
+
+.crm-contact__control--message {
+  min-height: 160px;
+  resize: vertical;
+}
+
+.crm-contact__control[aria-invalid="true"] {
+  border-color: var(--error-fg);
+}
+
+.crm-contact__field-error {
+  color: var(--error-fg);
+  font-size: var(--fs-caption);
+}
+
+.crm-contact__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  justify-self: start;
+  min-height: var(--control-height);
+  padding-inline: var(--space-5);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--action-primary-bg);
+  color: var(--action-primary-fg);
+  font-family: inherit;
+  font-size: var(--fs-body-s);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.crm-contact__submit:hover {
+  background: var(--action-primary-bg-hover);
+}
+
+.crm-contact__submit:active {
+  background: var(--action-primary-bg-active);
+  transform: scale(0.98);
+}
+
+.crm-contact__submit i {
+  font-size: var(--fs-caption);
+}
+
+.crm-contact__note {
+  color: var(--text-low);
+  font-size: var(--fs-caption);
+}
+
+/* ===========================
+   Liens et listes
+   =========================== */
+
+.crm-contact__legal,
+.crm-contact__faq,
+.crm-contact__shortcuts {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+}
+
+.crm-contact__legal li,
+.crm-contact__faq li,
+.crm-contact__shortcuts li {
+  border-top: var(--border-width) solid var(--border-subtle);
+}
+
+.crm-contact__legal a,
+.crm-contact__shortcuts a {
+  display: block;
+  padding-block: var(--space-3);
+  color: var(--text-mid);
+  font-size: var(--fs-body-s);
+  transition: color var(--transition-fast);
+}
+
+.crm-contact__legal a:hover,
+.crm-contact__shortcuts a:hover {
+  color: var(--text-hi);
+}
+
+/* ===========================
+   FAQ
+   =========================== */
+
+.crm-contact__faq-item {
+  padding-block: var(--space-3);
+}
+
+.crm-contact__faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  color: var(--text-mid);
+  font-size: var(--fs-body-s);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  list-style: none;
+}
+
+.crm-contact__faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.crm-contact__faq-question::after {
+  content: "\f078";
+  flex-shrink: 0;
+  color: var(--text-low);
+  font-size: var(--fs-caption);
+  transition: transform var(--transition-fast);
+}
+
+.crm-contact__faq-item[open] .crm-contact__faq-question::after {
+  transform: rotate(180deg);
+}
+
+.crm-contact__faq-answer {
+  padding-top: var(--space-2);
+  color: var(--text-low);
+  font-size: var(--fs-body-s);
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+
+@media (max-width: 1024px) {
+  .crm-contact__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .crm-contact {
+    padding-block: var(--space-8) var(--space-12);
+  }
+
+  .crm-contact__submit {
+    justify-self: stretch;
+  }
+}

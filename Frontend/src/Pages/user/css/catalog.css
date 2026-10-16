@@ -1,0 +1,203 @@
+/* ==========================================================================
+   CRM Commerce — Page catalogue (espace utilisateur)
+   DA : brand-book.md §K.2 « Page catalogue », §17 « Carte CRM », §18 « Bouton ».
+   Couleurs : tokens uniquement.
+   ========================================================================== */
+
+.catalog {
+  max-width: var(--layout-content);
+  min-height: calc(100vh - var(--navbar-height));
+  margin-inline: auto;
+  padding: var(--space-12) var(--section-padding-x) var(--space-20);
+  background: var(--surface-canvas);
+  color: var(--text-hi);
+}
+
+/* ===========================
+   En-tête
+   =========================== */
+
+.catalog h1 {
+  max-width: var(--layout-prose);
+  padding-bottom: var(--space-6);
+  border-bottom: var(--border-width) solid var(--border-subtle);
+}
+
+/* ===========================
+   Recherche — DA §K.2 Formulaires :
+   hauteur 40 · rayon 9 · fond Card · bordure Line · focus Brand 400 + ring 3px
+   =========================== */
+
+.catalog input[type="search"] {
+  display: block;
+  width: 100%;
+  min-height: var(--control-height);
+  padding: var(--space-2) var(--space-4);
+  margin: var(--space-6) 0 var(--space-8);
+  border: var(--border-width) solid var(--border-default);
+  border-radius: var(--radius-control);
+  background: var(--surface-card);
+  color: var(--text-hi);
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.catalog input[type="search"]::placeholder {
+  color: var(--text-low);
+}
+
+.catalog input[type="search"]:hover {
+  border-color: var(--border-strong);
+}
+
+.catalog input[type="search"]:focus-visible {
+  border-color: var(--border-focus);
+  box-shadow: var(--focus-ring);
+}
+
+/* ===========================
+   Grille — DA §K.2 : 3 col (> 1180) / 2 (768–1180) / 1 (< 768)
+   =========================== */
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+}
+
+/* ===========================
+   Carte CRM — DA §17 :
+   Card · bordure Line · rayon 16 · padding 20 · liseré haut 3px teinte module
+   Icône 40 sur Brand Wash · nom H3 · prix Signal · bouton Secondary
+   =========================== */
+
+.catalog-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto auto 1fr auto;
+  gap: var(--space-3) var(--space-4);
+  padding: var(--card-padding);
+  border: var(--border-width) solid var(--border-default);
+  border-top: var(--border-width-accent) solid var(--module);
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.catalog-card:hover {
+  border-color: var(--border-strong);
+  border-top-color: var(--module);
+  transform: translateY(-2px);
+}
+
+.catalog-icon {
+  display: grid;
+  grid-column: 1 / -1;
+  width: var(--control-height);
+  height: var(--control-height);
+  border-radius: var(--radius-control);
+  background: var(--brand-wash);
+  color: var(--brand-300);
+  font-size: 1.25rem;
+  place-items: center;
+}
+
+.catalog-card h2 {
+  grid-column: 1 / -1;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--tr-h3);
+}
+
+.catalog-card .catalog-sector {
+  grid-column: 1 / -1;
+  color: var(--text-low);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+}
+
+.catalog-card .catalog-desc {
+  grid-column: 1 / -1;
+  color: var(--text-mid);
+  font-size: var(--fs-body-s);
+  line-height: var(--lh-body-s);
+}
+
+.catalog-card .catalog-price {
+  grid-column: 1;
+  align-self: center;
+  color: var(--signal-fg);
+  font-family: var(--font-mono);
+  font-size: var(--fs-h4);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--fw-semibold);
+}
+
+/* Action card — DA §18 Secondary : bg Raised · bordure Line · h 40 · rayon 9 · Inter 600/14 */
+
+.catalog-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 2;
+  align-self: center;
+  justify-self: end;
+  min-height: var(--control-height);
+  padding-inline: var(--space-4);
+  border: var(--border-width) solid var(--border-default);
+  border-radius: var(--radius-control);
+  background: var(--action-secondary-bg);
+  color: var(--action-secondary-fg);
+  font-size: var(--fs-body-s);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tr-h3);
+  white-space: nowrap;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.catalog-card:hover .catalog-card__cta {
+  border-color: var(--border-strong);
+  background: var(--action-secondary-bg-hover);
+}
+
+/* ===========================
+   État vide — DA §K.1 : jamais un écran vide, Text Mid
+   =========================== */
+
+.catalog-grid > p {
+  grid-column: 1 / -1;
+  padding: var(--space-8) var(--space-6);
+  border: var(--border-width) solid var(--border-default);
+  border-radius: var(--radius-card);
+  background: var(--surface-panel);
+  color: var(--text-mid);
+  font-size: var(--fs-body-s);
+  text-align: center;
+}
+
+/* ===========================
+   Responsive — DA §K.2
+   =========================== */
+
+@media (max-width: 1180px) {
+  .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .catalog {
+    padding-block: var(--space-8) var(--space-12);
+  }
+
+  .catalog-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
